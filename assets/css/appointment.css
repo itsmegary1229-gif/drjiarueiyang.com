@@ -1,0 +1,243 @@
+/* ============================================
+   門診掛號頁樣式
+   ============================================ */
+
+/* --- 門診時間表 --- */
+.section-schedule {
+  padding: 0 0 var(--section-gap);
+}
+
+.schedule-legend {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.legend-jah {
+  color: #2D5F9A;
+}
+
+.legend-cgmh {
+  color: #C27A3A;
+}
+
+.schedule-table-wrapper {
+  overflow-x: auto;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  font-size: 14px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 16px 12px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.schedule-table thead th {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.schedule-table .time-label {
+  font-weight: 500;
+  color: var(--color-primary);
+  background: rgba(38, 33, 92, 0.04);
+  width: 80px;
+}
+
+.schedule-table td span {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  margin-top: 4px;
+}
+
+/* 大里仁愛 — 藍色系 */
+.slot-jah {
+  background: rgba(45, 95, 154, 0.08);
+  color: #2D5F9A;
+  font-weight: 500;
+}
+
+/* 桃園長庚 — 橘色系 */
+.slot-cgmh {
+  background: rgba(194, 122, 58, 0.08);
+  color: #C27A3A;
+  font-weight: 500;
+}
+
+/* --- 醫院掛號資訊 --- */
+.section-hospitals {
+  padding: 0 0 var(--section-gap);
+}
+
+.hospital-card {
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.hospital-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.hospital-role {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.hospital-info {
+  text-align: left;
+  margin: 16px 0;
+}
+
+.hospital-info p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.hospital-info strong {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.hospital-info a {
+  color: var(--color-primary-light);
+  transition: color 0.3s ease;
+}
+
+.hospital-info a:hover {
+  color: var(--color-primary);
+}
+
+.hospital-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hospital-actions .btn-primary {
+  width: 100%;
+}
+
+/* --- 聯絡諮詢 --- */
+.section-contact {
+  padding: 0 0 var(--section-gap);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--section-gap);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  font-family: var(--font-sans);
+  border: 1px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text-primary);
+  border-radius: 0;
+  transition: border-color 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.contact-form .btn-primary {
+  margin-top: 8px;
+}
+
+.contact-info-side {
+  padding-top: 12px;
+}
+
+.contact-name-zh {
+  font-family: var(--font-serif-zh), serif;
+  font-size: 22px;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.contact-name-en {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.contact-role {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+
+.contact-line {
+  font-size: 15px;
+  color: var(--color-text-primary);
+}
+
+/* ============================================
+   RWD — 手機
+   ============================================ */
+@media (max-width: 767px) {
+  .schedule-legend {
+    gap: 20px;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 10px 6px;
+    font-size: 13px;
+  }
+
+  .hospital-card {
+    padding: 24px 16px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

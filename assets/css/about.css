@@ -1,0 +1,357 @@
+/* ============================================
+   醫師介紹頁專屬樣式
+   ============================================ */
+
+/* --- 淡入動畫 --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 個人介紹 --- */
+.section-intro {
+  padding: 0 0 var(--section-gap);
+}
+
+.intro-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+}
+
+.intro-photo {
+  flex: 0 0 340px;
+}
+
+.intro-text {
+  flex: 1;
+}
+
+.intro-text .hero-tagline {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.intro-text p:not(.hero-tagline) {
+  font-size: 16px;
+  color: var(--color-primary);
+  line-height: 1.8;
+}
+
+.intro-text h2 {
+  margin-bottom: 0;
+}
+
+.placeholder-text {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  border-left: 2px solid var(--color-border);
+  padding-left: 16px;
+}
+
+/* --- 專長項目 --- */
+
+
+/* --- 學經歷時間軸 --- */
+.section-timeline {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.experience-list {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 24px;
+}
+
+.experience-list.has-line::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 24px;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-accent);
+}
+
+.experience-group {
+  margin-bottom: 24px;
+}
+
+.experience-group:last-child {
+  margin-bottom: 0;
+}
+
+.experience-group p {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-primary);
+  line-height: 1.9;
+  margin: 0;
+}
+
+.experience-dot {
+  position: relative;
+}
+
+.experience-dot::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+.experience-label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-accent) !important;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px !important;
+}
+
+.placeholder-item h3 {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* --- 專業認證 --- */
+.section-certs {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.cert-item {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.cert-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90vh;
+}
+
+/* --- 研究領域 --- */
+.section-research {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.research-list {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.research-list li {
+  font-size: 16px;
+  color: var(--color-text-primary);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+  line-height: 1.6;
+}
+
+.research-list li:last-child {
+  border-bottom: none;
+}
+
+/* --- 論文發表 --- */
+.section-publications {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.publication-list {
+  max-width: 800px;
+  margin: 0 auto;
+  counter-reset: pub;
+  list-style: none;
+}
+
+.publication-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-border);
+  counter-increment: pub;
+  position: relative;
+  padding-left: 36px;
+}
+
+.publication-item::before {
+  content: counter(pub) ".";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.publication-item:last-child {
+  border-bottom: none;
+}
+
+.pub-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.pub-meta {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+}
+
+/* --- 演講與進修 --- */
+.section-lectures {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.lecture-list {
+  list-style: none;
+}
+
+.lecture-list li {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-style: italic;
+}
+
+.lecture-list li:last-child {
+  border-bottom: none;
+}
+
+/* --- 獎項 --- */
+.section-awards {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.awards-list {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.awards-list li {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-style: italic;
+}
+
+.awards-list li:last-child {
+  border-bottom: none;
+}
+
+/* --- 媒體報導 --- */
+.section-media {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.media-card {
+  transition: transform 0.3s ease;
+}
+
+.media-card:hover {
+  transform: translateY(-4px);
+}
+
+.media-source {
+  font-size: 13px;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+.media-card h3 {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin: 4px 0 8px;
+}
+
+/* ============================================
+   RWD — 平板
+   ============================================ */
+@media (max-width: 1023px) {
+  .intro-inner {
+    gap: 40px;
+  }
+
+  .intro-photo {
+    flex: 0 0 280px;
+  }
+}
+
+/* ============================================
+   RWD — 手機
+   ============================================ */
+@media (max-width: 767px) {
+  .intro-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .intro-photo {
+    flex: none;
+    width: 100%;
+  }
+
+  .intro-photo .img-placeholder {
+    height: 360px !important;
+  }
+
+  .timeline {
+    padding-left: 28px;
+  }
+
+  .publication-item {
+    padding-left: 28px;
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

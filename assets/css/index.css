@@ -1,0 +1,286 @@
+/* ============================================
+   首頁專屬樣式
+   ============================================ */
+
+/* --- Hero 區塊 --- */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  min-height: calc(100vh - 88px);
+}
+
+.hero-text {
+  position: absolute;
+  left: 74px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-tagline {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-name-zh {
+  font-family: var(--font-serif-zh), serif;
+  font-size: 52px;
+  font-weight: 500;
+  color: var(--color-primary);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.hero-name-en {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+}
+
+.hero-statement {
+  font-family: var(--font-serif-zh), serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  margin-bottom: 32px;
+}
+
+.hero-visual {
+  position: absolute;
+  right: 174px;
+  bottom: 0;
+}
+
+.hero-photo {
+  width: auto;
+  height: auto;
+  max-height: calc((100vh - 88px) * 0.9);
+  object-fit: contain;
+  object-position: center bottom;
+  border-radius: 0;
+}
+
+.hero-divider {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--color-accent);
+  margin-bottom: 28px;
+}
+
+.hero-face-line {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 180px;
+  height: auto;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* --- 關於醫師預覽 --- */
+.section-about-preview {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.about-preview-inner {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+.about-preview-text {
+  flex: 1;
+}
+
+.about-preview-text h2 {
+  margin-bottom: 0;
+}
+
+.about-preview-text p:not(.hero-tagline) {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.9;
+}
+
+.about-preview-photo {
+  flex: 0 0 340px;
+}
+
+/* --- 最新知識專欄 --- */
+.section-articles {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+/* --- 案例分享預覽 --- */
+.section-cases-preview {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+/* --- 門診資訊 --- */
+.section-clinic {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.clinic-card {
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.clinic-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.clinic-table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.clinic-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.clinic-table tr:last-child td {
+  border-bottom: none;
+}
+
+.clinic-table td:first-child {
+  font-weight: 500;
+  text-align: left;
+}
+
+.clinic-table td:last-child {
+  text-align: right;
+  color: var(--color-text-secondary);
+}
+
+/* --- 淡入動畫 --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   RWD — 平板
+   ============================================ */
+@media (max-width: 1023px) {
+  .hero-name-zh { font-size: 42px; }
+  .hero-name-en { font-size: 18px; }
+
+  .hero-text {
+    left: 48px;
+  }
+
+  .hero-visual {
+    right: 48px;
+  }
+
+  .hero-face-line {
+    width: 140px;
+    right: -10px;
+  }
+
+  .about-preview-inner {
+    gap: 40px;
+  }
+
+  .about-preview-photo {
+    flex: 0 0 280px;
+  }
+}
+
+/* ============================================
+   RWD — 手機
+   ============================================ */
+@media (max-width: 767px) {
+  .hero-inner {
+    min-height: 100vh;
+  }
+
+  .hero-text {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    padding: 100px 16px 24px;
+    text-align: center;
+  }
+
+  .hero-name-zh { font-size: 36px; }
+  .hero-name-en { font-size: 17px; }
+  .hero-statement { font-size: 16px; }
+
+  .hero-divider {
+    margin: 0 auto 28px;
+  }
+
+  .hero-visual {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-photo {
+    width: 260px;
+    max-height: 50vh;
+  }
+
+  .hero-face-line {
+    width: 120px;
+    right: 0;
+  }
+
+  .about-preview-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .about-preview-photo {
+    flex: none;
+    width: 100%;
+  }
+
+  .about-preview-photo .img-placeholder {
+    height: 300px !important;
+  }
+
+  .clinic-card {
+    padding: 24px 16px;
+  }
+}

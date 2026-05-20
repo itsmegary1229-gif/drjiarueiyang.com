@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="楊佳叡醫師門診掛號資訊 — 仁愛長庚合作聯盟醫院（大里仁愛醫院）、桃園長庚紀念醫院">
+  <meta name="author" content="Jia-Ruei Yang, MD">
+  <meta property="og:title" content="門診掛號 | 楊佳叡醫師">
+  <meta property="og:description" content="楊佳叡醫師門診時間與掛號資訊">
+  <title>門診掛號 | 楊佳叡醫師</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/appointment.css">
+</head>
+<body>
+
+  <!-- ===== 導覽列 ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-menu">
+        <a href="index.html">首頁</a>
+        <div class="nav-item has-dropdown">
+          <a href="about.html">醫師介紹</a>
+          <div class="dropdown">
+            <a href="about.html#intro">個人簡介</a>
+
+            <a href="about.html#timeline">學經歷</a>
+            <a href="about.html#certs">專業認證</a>
+            <a href="about.html#publications">論文發表</a>
+            <a href="about.html#lectures">進修與演講</a>
+            <a href="about.html#media">媒體報導</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="treatments/index.html">專長項目</a>
+          <div class="dropdown">
+            <a href="treatments/craniofacial.html">顱顏重建</a>
+            <a href="treatments/facial.html">顏面整形</a>
+            <a href="treatments/cosmetic.html">美容手術</a>
+          </div>
+        </div>
+        <a href="blog/index.html">知識專欄</a>
+        <a href="cases/index.html">案例分享</a>
+        <div class="nav-item has-dropdown">
+          <a href="appointment.html" class="active">門診掛號</a>
+          <div class="dropdown">
+            <a href="#jah">仁愛長庚合作聯盟醫院（大里仁愛醫院）</a>
+            <a href="#cgmh">桃園長庚紀念醫院</a>
+          </div>
+        </div>
+      </div>
+      <button class="hamburger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">首頁</a>
+    <div class="mobile-nav-item">
+      <a href="about.html">醫師介紹</a>
+      <div class="mobile-dropdown">
+        <a href="about.html#intro">個人簡介</a>
+        <a href="about.html#specialties">專長領域</a>
+        <a href="about.html#timeline">學經歷</a>
+        <a href="about.html#certs">專業認證</a>
+        <a href="about.html#publications">論文發表</a>
+        <a href="about.html#lectures">進修與演講</a>
+        <a href="about.html#media">媒體報導</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <a href="treatments/index.html">專長項目</a>
+      <div class="mobile-dropdown">
+        <a href="treatments/craniofacial.html">顱顏重建</a>
+        <a href="treatments/facial.html">顏面整形</a>
+        <a href="treatments/cosmetic.html">美容手術</a>
+      </div>
+    </div>
+    <a href="blog/index.html">知識專欄</a>
+    <a href="cases/index.html">案例分享</a>
+    <div class="mobile-nav-item">
+      <a href="appointment.html">門診掛號</a>
+      <div class="mobile-dropdown">
+        <a href="#jah">仁愛長庚合��聯盟醫院（大里仁愛醫院）</a>
+        <a href="#cgmh">桃園長庚紀念醫院</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 頁首區 ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>門診掛號</h1>
+      <p class="subtitle">Appointment</p>
+    </div>
+  </section>
+
+  <!-- ===== 門診時間表 ===== -->
+  <section class="section-schedule">
+    <div class="container">
+      <div class="section-title">
+        <h2>門診時間表</h2>
+        <span class="subtitle">Weekly Schedule</span>
+      </div>
+      <div class="schedule-legend">
+        <span class="legend-item legend-jah">● 大里仁愛</span>
+        <span class="legend-item legend-cgmh">● 桃園長庚</span>
+      </div>
+      <div class="schedule-table-wrapper">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>時段</th>
+              <th>一</th>
+              <th>二</th>
+              <th>三</th>
+              <th>四</th>
+              <th>五</th>
+              <th>六</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="time-label">上午</td>
+              <td></td>
+              <td class="slot-jah">大里仁愛<br><span>健保門診</span></td>
+              <td class="slot-jah">大里仁愛<br><span>健保門診</span></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="time-label">下午</td>
+              <td></td>
+              <td class="slot-jah">大里仁愛<br><span>美容中心</span></td>
+              <td></td>
+              <td class="slot-cgmh">桃園長庚<br><span>健保門診</span></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="time-label">夜診</td>
+              <td></td>
+              <td></td>
+              <td class="slot-cgmh">桃園長庚<br><span>美容中心</span></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 兩家醫院掛號資訊 ===== -->
+  <section class="section-hospitals">
+    <div class="container">
+      <div class="grid-2 hospital-grid">
+
+        <!-- 仁愛長庚（大里仁愛醫院） -->
+        <div id="jah" class="hospital-card">
+          <h3>仁愛長庚合作聯盟醫院（大里仁愛醫院）</h3>
+          <p class="hospital-role">整形外科 科主任</p>
+          <div class="divider" style="margin: 16px 0;"></div>
+          <div class="hospital-info">
+            <p><strong>地址</strong><br>412 台中市大里區東榮路 483 號</p>
+            <p><strong>人工預約</strong><br>(04) 2481-9955</p>
+            <p><strong>語音預約</strong><br>(04) 2481-9000</p>
+          </div>
+          <div class="hospital-actions">
+            <a href="https://www.jah.org.tw/" target="_blank" rel="noopener" class="btn-primary">官方網站 →</a>
+            <a href="https://www.jah.org.tw/" target="_blank" rel="noopener" class="btn-primary">線上掛號 →</a>
+          </div>
+        </div>
+
+        <!-- 桃園長庚紀念醫院 -->
+        <div id="cgmh" class="hospital-card">
+          <h3>桃園長庚紀念醫院</h3>
+          <p class="hospital-role">整形外科 主治醫師</p>
+          <div class="divider" style="margin: 16px 0;"></div>
+          <div class="hospital-info">
+            <p><strong>地址</strong><br>333 桃園市龜山區舊路里頂湖路 123 號</p>
+            <p><strong>美容醫學中心諮詢專線</strong><br>(03) 320-7099、(03) 320-8077</p>
+          </div>
+          <div class="hospital-actions">
+            <a href="https://www.cgmh.org.tw/" target="_blank" rel="noopener" class="btn-primary">官方網站 →</a>
+            <a href="https://www.cgmh.org.tw/" target="_blank" rel="noopener" class="btn-primary">線上掛號 →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 聯絡方式 ===== -->
+  <section class="section-contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>聯絡諮詢</h2>
+        <span class="subtitle">Contact</span>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-form-wrapper">
+          <form class="contact-form" action="" method="POST">
+            <div class="form-field">
+              <label for="contact-name">姓名 *</label>
+              <input type="text" id="contact-name" name="name" required>
+            </div>
+            <div class="form-field">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" name="email">
+            </div>
+            <div class="form-field">
+              <label for="contact-subject">諮詢項目 Subject</label>
+              <input type="text" id="contact-subject" name="subject">
+            </div>
+            <div class="form-field">
+              <label for="contact-message">訊息內容 Message</label>
+              <textarea id="contact-message" name="message" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn-primary">送出 →</button>
+          </form>
+        </div>
+        <div class="contact-info-side">
+          <h3 class="contact-name-zh">楊佳叡醫師</h3>
+          <p class="contact-name-en">Jia-Ruei Yang, MD</p>
+          <p class="contact-role">整形外科專科醫師</p>
+          <div class="divider" style="margin: 20px 0;"></div>
+          <p class="contact-line">LINE ID：@558kqoqt</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 頁尾 ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="name-zh">楊佳叡醫師</div>
+          <div class="name-en">Jia-Ruei Yang, MD</div>
+          <p class="tagline">整形外科專科醫師<br>從顱顏重建到美容手術，用專業與溫度陪伴每一位患者</p>
+        </div>
+        <div class="footer-nav">
+          <h4>快速連結</h4>
+          <div class="footer-links">
+            <a href="index.html">首頁</a>
+            <a href="about.html">醫師介紹</a>
+            <a href="blog/index.html">知識專欄</a>
+            <a href="cases/index.html">案例分享</a>
+            <a href="appointment.html">門診掛號</a>
+          </div>
+        </div>
+        <div class="footer-info">
+          <h4>聯絡方式</h4>
+          <div class="footer-contact">
+            <p>Email：<a href="mailto:itsmegary1229@gmail.com">itsmegary1229@gmail.com</a></p>
+            <p>LINE ID：itsmegary1229</p>
+          </div>
+          <h4 style="margin-top: 24px;">相關連結</h4>
+          <div class="footer-links">
+            <a href="https://www.jah.org.tw/" target="_blank" rel="noopener">仁愛長庚合作聯盟醫院（大里仁愛醫院）</a>
+            <a href="https://www.cgmh.org.tw/" target="_blank" rel="noopener">桃園長庚紀念醫院</a>
+            <a href="https://orcid.org/0000-0002-8584-870X" target="_blank" rel="noopener">ORCID</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2025 楊佳叡醫師. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

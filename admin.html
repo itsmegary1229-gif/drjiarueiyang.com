@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章後台 | 楊佳叡醫師</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Inter', sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    /* ===== 登入畫面 ===== */
+    #login-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .login-box {
+      background: #fff;
+      padding: 48px 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      text-align: center;
+      width: 320px;
+    }
+    .login-box h1 { font-size: 20px; margin-bottom: 8px; }
+    .login-box p { color: #888; font-size: 14px; margin-bottom: 28px; }
+    .login-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+    .login-box input:focus { outline: none; border-color: #4a6fa5; }
+    .login-error { color: #e53e3e; font-size: 13px; margin-bottom: 12px; display: none; }
+
+    /* ===== 後台主畫面 ===== */
+    #admin-screen { display: none; }
+
+    .admin-header {
+      background: #1a2340;
+      color: #fff;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .admin-header h1 { font-size: 16px; font-weight: 400; letter-spacing: 0.05em; }
+    .admin-header button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .admin-body { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+
+    /* 頁籤 */
+    .tab-bar { display: flex; gap: 8px; margin-bottom: 32px; }
+    .tab-btn {
+      padding: 10px 24px;
+      border: 1.5px solid #ddd;
+      background: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #555;
+    }
+    .tab-btn.active { background: #1a2340; color: #fff; border-color: #1a2340; }
+
+    /* 文章列表 */
+    #tab-list { }
+    .article-list { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .article-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .article-item:last-child { border-bottom: none; }
+    .article-item-info { flex: 1; }
+    .article-item-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .article-item-meta { font-size: 13px; color: #888; }
+    .article-item-type {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-right: 8px;
+      background: #e8f0fe;
+      color: #1a5276;
+    }
+    .article-item-type.case { background: #fef3e2; color: #7d4e00; }
+    .article-item-actions { display: flex; gap: 8px; }
+    .btn-edit { padding: 6px 16px; background: #f0f0f0; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; }
+    .btn-delete { padding: 6px 16px; background: #fff0f0; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; color: #e53e3e; }
+    .btn-edit:hover { background: #e0e0e0; }
+    .btn-delete:hover { background: #ffe0e0; }
+
+    .btn-new {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 24px;
+      background: #1a2340;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-new:hover { background: #2d3a5c; }
+
+    /* 編輯表單 */
+    #tab-edit { display: none; }
+    .form-section { background: #fff; border-radius: 8px; padding: 28px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .form-section h3 { font-size: 14px; font-weight: 500; color: #888; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px; }
+    .form-row { margin-bottom: 18px; }
+    .form-row label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fafafa;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      outline: none;
+      border-color: #4a6fa5;
+      background: #fff;
+    }
+    .form-row textarea { min-height: 300px; resize: vertical; line-height: 1.7; }
+    .form-row .hint { font-size: 12px; color: #aaa; margin-top: 5px; }
+
+    .form-actions { display: flex; gap: 12px; margin-top: 8px; }
+    .btn-save {
+      padding: 12px 32px;
+      background: #1a2340;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .btn-save:hover { background: #2d3a5c; }
+    .btn-cancel {
+      padding: 12px 24px;
+      background: #f0f0f0;
+      color: #555;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .btn-cancel:hover { background: #e0e0e0; }
+
+    .save-status { font-size: 14px; color: #27ae60; display: none; align-items: center; gap: 8px; }
+    .save-status.error { color: #e53e3e; }
+
+    /* 圖片說明區 */
+    .image-helper {
+      background: #f8f9ff;
+      border: 1.5px dashed #c5d0e8;
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 8px;
+    }
+    .image-helper p { font-size: 13px; color: #555; line-height: 1.8; }
+    .image-helper code { background: #e8ecf5; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+
+    /* 格式工具列 */
+    .format-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+    .format-toolbar button {
+      padding: 5px 12px;
+      background: #fff;
+      border: 1.5px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+      color: #333;
+    }
+    .format-toolbar button:hover { background: #f0f4ff; border-color: #4a6fa5; color: #1a2340; }
+
+    /* Quill 編輯器 */
+    #quill-editor {
+      min-height: 320px;
+      font-size: 15px;
+      font-family: 'Noto Sans TC', sans-serif;
+      line-height: 1.8;
+      background: #fff;
+    }
+    .ql-toolbar { border-radius: 6px 6px 0 0 !important; border-color: #e0e0e0 !important; background: #fafafa; }
+    .ql-container { border-radius: 0 0 6px 6px !important; border-color: #e0e0e0 !important; font-size: 15px; }
+    .ql-editor { min-height: 320px; line-height: 1.8; }
+    .ql-editor h2 { font-size: 20px; margin: 16px 0 8px; }
+    .ql-editor h3 { font-size: 17px; margin: 12px 0 6px; }
+    .ql-editor p { margin-bottom: 10px; }
+    .ql-editor blockquote { border-left: 3px solid #ccc; padding-left: 16px; color: #666; margin: 12px 0; }
+
+    /* 選圖按鈕 */
+    .btn-pick {
+      padding: 10px 20px;
+      background: #f0f4ff;
+      border: 1.5px solid #c5d0e8;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #1a2340;
+      font-family: inherit;
+    }
+    .btn-pick:hover { background: #e0e8ff; }
+
+    /* 圖片格子 */
+    .picker-item {
+      cursor: pointer;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: border-color 0.15s;
+      background: #f5f5f5;
+    }
+    .picker-item:hover { border-color: #4a6fa5; }
+    .picker-item img { width: 100%; height: 120px; object-fit: cover; display: block; }
+    .picker-item-name { font-size: 11px; padding: 4px 6px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* 空列表 */
+    .empty-list { text-align: center; padding: 48px; color: #bbb; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+<!-- ===== 登入畫面 ===== -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>楊佳叡醫師</h1>
+    <p>文章後台管理系統</p>
+    <input type="password" id="password-input" placeholder="請輸入密碼" maxlength="20">
+    <div class="login-error" id="login-error">密碼錯誤，請再試一次</div>
+    <button class="btn-save" style="width:100%" onclick="login()">登入</button>
+  </div>
+</div>
+
+<!-- ===== 後台主畫面 ===== -->
+<div id="admin-screen">
+  <div class="admin-header">
+    <h1>楊佳叡醫師 ／ 文章後台</h1>
+    <button onclick="logout()">登出</button>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- 頁籤 -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="showTab('list')">文章列表</button>
+      <button class="tab-btn" onclick="showTab('edit')" id="edit-tab-btn">＋ 新增文章</button>
+    </div>
+
+    <!-- 文章列表 -->
+    <div id="tab-list">
+      <div class="article-list" id="article-list">
+        <div class="empty-list">載入中⋯⋯</div>
+      </div>
+    </div>
+
+    <!-- 編輯表單 -->
+    <div id="tab-edit">
+      <div class="form-section">
+        <h3>基本資訊</h3>
+
+        <div class="form-row">
+          <label>文章類型</label>
+          <select id="f-type">
+            <option value="blog">知識專欄</option>
+            <option value="case">案例分享</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>文章標題</label>
+          <input type="text" id="f-title" placeholder="例：雙眼皮手術完整指南">
+        </div>
+
+        <div class="form-row">
+          <label>發布日期</label>
+          <input type="text" id="f-date" placeholder="例：2026.05.12">
+        </div>
+
+        <div class="form-row">
+          <label>標籤（用逗號分隔）</label>
+          <input type="text" id="f-tags" placeholder="例：上眼皮手術,衛教知識">
+          <div class="hint">多個標籤請用半形逗號「,」分隔，不要加 #</div>
+        </div>
+
+        <div class="form-row">
+          <label>摘要（顯示在文章列表卡片）</label>
+          <input type="text" id="f-excerpt" placeholder="一到兩句話簡介文章內容">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>封面圖片</h3>
+        <div class="form-row">
+          <button type="button" class="btn-pick" onclick="openPicker('cover')">📂 從 Google Drive 選擇封面圖</button>
+        </div>
+        <div id="cover-preview" style="margin-top:10px; display:none;">
+          <img id="cover-preview-img" style="max-width:100%; max-height:200px; border-radius:4px; border:1px solid #eee;">
+          <div style="margin-top:6px;">
+            <button type="button" onclick="clearCover()" style="font-size:12px; color:#e53e3e; background:none; border:none; cursor:pointer;">✕ 移除封面圖</button>
+          </div>
+        </div>
+        <input type="hidden" id="f-cover">
+        <input type="hidden" id="f-cover-drive">
+      </div>
+
+      <div class="form-section">
+        <h3>文章內文</h3>
+
+        <div class="form-row">
+          <label>內文</label>
+          <div id="quill-editor"></div>
+          <div class="hint">💡 直接在上方編輯器輸入，點工具列按鈕套用格式，所見即所得</div>
+        </div>
+
+        <!-- 插入圖片 -->
+        <div style="background:#f0f4ff; border:1.5px solid #c5d0e8; border-radius:8px; padding:16px; margin-top:16px;">
+          <div style="font-size:13px; font-weight:500; color:#1a2340; margin-bottom:12px;">🖼️ 插入圖片到內文</div>
+          <button type="button" class="btn-pick" onclick="openPicker('content')">📂 從 Google Drive 選擇圖片</button>
+          <div style="margin-top:10px;">
+            <input type="text" id="img-caption" placeholder="圖片說明文字（選填）" style="width:100%; padding:8px 12px; border:1.5px solid #ddd; border-radius:6px; font-size:13px; background:#fff;">
+          </div>
+        </div>
+      </div>
+
+      <!-- 圖片選取器 Modal -->
+      <div id="picker-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:12px; width:90%; max-width:800px; max-height:85vh; display:flex; flex-direction:column; overflow:hidden;">
+          <div style="padding:16px 20px; border-bottom:1px solid #eee; display:flex; align-items:center; justify-content:space-between;">
+            <div style="font-size:15px; font-weight:500;" id="picker-title">選擇圖片</div>
+            <button onclick="closePicker()" style="background:none; border:none; font-size:20px; cursor:pointer; color:#888;">✕</button>
+          </div>
+          <div id="picker-grid" style="padding:16px; overflow-y:auto; display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:12px;">
+            <div style="text-align:center; padding:40px; color:#aaa; grid-column:1/-1;">載入中⋯⋯</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-actions">
+          <button class="btn-save" onclick="saveArticle()">儲存發布</button>
+          <button class="btn-cancel" onclick="cancelEdit()">取消</button>
+          <span class="save-status" id="save-status"></span>
+        </div>
+      </div>
+
+    </div><!-- end tab-edit -->
+  </div><!-- end admin-body -->
+</div><!-- end admin-screen -->
+
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+<script type="module">
+  import { db } from "../assets/js/firebase-config.js";
+  import {
+    collection, getDocs, addDoc, updateDoc, deleteDoc,
+    doc, orderBy, query
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  /* ===== 密碼 ===== */
+  const PASSWORD = '1202';  // ★ 您可以修改這個密碼
+
+  /* ===== Quill 富文本編輯器 ===== */
+  const quill = new Quill('#quill-editor', {
+    theme: 'snow',
+    placeholder: '在這裡撰寫文章內容⋯⋯',
+    modules: {
+      toolbar: [
+        [{ 'header': [2, 3, false] }],
+        ['bold', 'italic', 'underline'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['blockquote'],
+        ['clean']
+      ]
+    }
+  });
+
+  window.login = function() {
+    const val = document.getElementById('password-input').value;
+    if (val === PASSWORD) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-screen').style.display = 'block';
+      loadArticles();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  };
+
+  // 按 Enter 也能登入
+  document.getElementById('password-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') window.login();
+  });
+
+  window.logout = function() {
+    document.getElementById('admin-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('password-input').value = '';
+  };
+
+  /* ===== Google Drive 圖片選取器 ===== */
+  const API_KEY = 'AIzaSyB9H8rJcK-OlUXopY75L9QAa5MeQ23e8mU';
+  const FOLDER_COVERS   = '1Kn-1bQPxger12fwsKZp96VspCtFZ_ifC';
+  const FOLDER_ARTICLES = '1UXVl37lwFqJ4w_Hi6GJ6fmA-5xLEn0a1';
+
+  let pickerTarget = 'cover'; // 'cover' 或 'content'
+  let imageCache = {};        // 快取已載入的圖片清單
+
+  function fileIdToUrl(fileId) {
+    return `https://lh3.googleusercontent.com/d/${fileId}`;
+  }
+
+  window.openPicker = async function(target) {
+    pickerTarget = target;
+    const modal = document.getElementById('picker-modal');
+    const grid = document.getElementById('picker-grid');
+    const title = document.getElementById('picker-title');
+
+    title.textContent = target === 'cover' ? '選擇封面圖片' : '選擇插入圖片';
+    modal.style.display = 'flex';
+
+    const folderId = target === 'cover' ? FOLDER_COVERS : FOLDER_ARTICLES;
+
+    // 有快取就直接用
+    if (imageCache[folderId]) {
+      renderPickerGrid(imageCache[folderId]);
+      return;
+    }
+
+    grid.innerHTML = '<div style="text-align:center; padding:40px; color:#aaa; grid-column:1/-1;">載入圖片中⋯⋯</div>';
+
+    try {
+      const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'+and+trashed=false&fields=files(id,name,thumbnailLink)&orderBy=createdTime+desc&pageSize=100&key=${API_KEY}`;
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (!data.files || data.files.length === 0) {
+        grid.innerHTML = '<div style="text-align:center; padding:40px; color:#aaa; grid-column:1/-1;">資料夾裡還沒有圖片<br><br>請先上傳圖片到對應的 Google Drive 資料夾</div>';
+        return;
+      }
+
+      imageCache[folderId] = data.files;
+      renderPickerGrid(data.files);
+
+    } catch (err) {
+      console.error(err);
+      grid.innerHTML = '<div style="text-align:center; padding:40px; color:#e53e3e; grid-column:1/-1;">載入失敗，請重新整理後再試</div>';
+    }
+  };
+
+  function renderPickerGrid(files) {
+    const grid = document.getElementById('picker-grid');
+    grid.innerHTML = files.map(f => `
+      <div class="picker-item" onclick="selectImage('${f.id}', '${f.name.replace(/'/g, '')}')">
+        <img src="${f.thumbnailLink || fileIdToUrl(f.id)}" alt="${f.name}" loading="lazy">
+        <div class="picker-item-name">${f.name}</div>
+      </div>
+    `).join('');
+  }
+
+  window.selectImage = function(fileId, fileName) {
+    const imgUrl = fileIdToUrl(fileId);
+
+    if (pickerTarget === 'cover') {
+      document.getElementById('f-cover').value = imgUrl;
+      document.getElementById('cover-preview-img').src = imgUrl;
+      document.getElementById('cover-preview').style.display = 'block';
+    } else {
+      const caption = document.getElementById('img-caption').value.trim();
+      const range = quill.getSelection(true);
+      quill.insertEmbed(range.index, 'image', imgUrl);
+      quill.insertText(range.index + 1, '\n');
+      if (caption) {
+        quill.insertText(range.index + 2, caption + '\n', { italic: true, color: '#888' });
+        document.getElementById('img-caption').value = '';
+      }
+      quill.setSelection(range.index + (caption ? 3 : 2));
+    }
+
+    closePicker();
+  };
+
+  window.closePicker = function() {
+    document.getElementById('picker-modal').style.display = 'none';
+  };
+
+  window.clearCover = function() {
+    document.getElementById('f-cover').value = '';
+    document.getElementById('cover-preview').style.display = 'none';
+  };
+
+  /* ===== Google Drive 網址轉換工具（保留供內部使用）===== */
+
+  function driveUrlToImage(driveUrl) {
+    const match = driveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (!match) return null;
+    return `https://lh3.googleusercontent.com/d/${match[1]}`;
+  }
+
+  window.convertCoverUrl = function() {
+    const input = document.getElementById('f-cover-drive').value.trim();
+    const imgUrl = driveUrlToImage(input);
+    if (!imgUrl) { alert('連結格式不正確，請確認是 Google Drive 分享連結'); return; }
+    document.getElementById('f-cover').value = imgUrl;
+    const preview = document.getElementById('cover-preview');
+    const previewImg = document.getElementById('cover-preview-img');
+    previewImg.src = imgUrl;
+    preview.style.display = 'block';
+  };
+
+  window.insertImage = function() {
+    const input = document.getElementById('img-drive-url').value.trim();
+    const caption = document.getElementById('img-caption').value.trim();
+    const imgUrl = driveUrlToImage(input);
+    if (!imgUrl) { alert('連結格式不正確，請確認是 Google Drive 分享連結'); return; }
+
+    // 在 Quill 游標位置插入圖片
+    const range = quill.getSelection(true);
+    quill.insertEmbed(range.index, 'image', imgUrl);
+    quill.insertText(range.index + 1, '\n');
+    if (caption) {
+      quill.insertText(range.index + 2, caption + '\n', { italic: true, color: '#888' });
+    }
+    quill.setSelection(range.index + (caption ? 3 : 2));
+
+    document.getElementById('img-drive-url').value = '';
+    document.getElementById('img-caption').value = '';
+  };
+
+  /* ===== 頁籤切換 ===== */
+  window.showTab = function(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    if (tab === 'list') {
+      document.getElementById('tab-list').style.display = 'block';
+      document.getElementById('tab-edit').style.display = 'none';
+      document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    } else {
+      document.getElementById('tab-list').style.display = 'none';
+      document.getElementById('tab-edit').style.display = 'block';
+      document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    }
+  };
+
+  /* ===== 新增文章 ===== */
+  let editingId = null;
+
+  window.newArticle = function() {
+    editingId = null;
+    document.getElementById('f-type').value = 'blog';
+    document.getElementById('f-title').value = '';
+    document.getElementById('f-date').value = getTodayDate();
+    document.getElementById('f-tags').value = '';
+    document.getElementById('f-excerpt').value = '';
+    document.getElementById('f-cover').value = '';
+    document.getElementById('cover-preview').style.display = 'none';
+    quill.setContents([]);
+    document.getElementById('edit-tab-btn').textContent = '＋ 新增文章';
+    showTab('edit');
+  };
+
+  function getTodayDate() {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}.${m}.${day}`;
+  }
+
+  /* ===== 儲存文章 ===== */
+  window.saveArticle = async function() {
+    const title = document.getElementById('f-title').value.trim();
+    if (!title) { alert('請填入文章標題'); return; }
+
+    const tagsRaw = document.getElementById('f-tags').value.trim();
+    const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+    const data = {
+      type:     document.getElementById('f-type').value,
+      title:    title,
+      date:     document.getElementById('f-date').value.trim(),
+      tags:     tags,
+      excerpt:  document.getElementById('f-excerpt').value.trim(),
+      coverUrl: document.getElementById('f-cover').value.trim(),
+      content:  quill.root.innerHTML.trim(),
+    };
+
+    const statusEl = document.getElementById('save-status');
+    statusEl.style.display = 'flex';
+    statusEl.className = 'save-status';
+    statusEl.textContent = '儲存中⋯⋯';
+
+    try {
+      if (editingId) {
+        await updateDoc(doc(db, 'articles', editingId), data);
+      } else {
+        await addDoc(collection(db, 'articles'), data);
+      }
+      statusEl.textContent = '✓ 已成功發布！';
+      setTimeout(() => {
+        statusEl.style.display = 'none';
+        showTab('list');
+        loadArticles();
+      }, 1500);
+    } catch (err) {
+      console.error(err);
+      statusEl.className = 'save-status error';
+      statusEl.textContent = '儲存失敗，請再試一次';
+    }
+  };
+
+  /* ===== 取消編輯 ===== */
+  window.cancelEdit = function() {
+    showTab('list');
+  };
+
+  /* ===== 讀取文章列表 ===== */
+  async function loadArticles() {
+    const listEl = document.getElementById('article-list');
+    listEl.innerHTML = '<div class="empty-list">載入中⋯⋯</div>';
+
+    try {
+      const q = query(collection(db, 'articles'), orderBy('date', 'desc'));
+      const snapshot = await getDocs(q);
+
+      if (snapshot.empty) {
+        listEl.innerHTML = '<div class="empty-list">尚無文章，點「＋ 新增文章」開始撰寫</div>';
+        return;
+      }
+
+      listEl.innerHTML = snapshot.docs.map(d => {
+        const data = d.data();
+        const typeLabel = data.type === 'case' ? '案例分享' : '知識專欄';
+        const typeClass = data.type === 'case' ? 'case' : '';
+        return `
+          <div class="article-item">
+            <div class="article-item-info">
+              <div class="article-item-title">${data.title || '（未命名）'}</div>
+              <div class="article-item-meta">
+                <span class="article-item-type ${typeClass}">${typeLabel}</span>
+                ${data.date || ''}
+                ${data.tags && data.tags.length ? ' ／ ' + data.tags.map(t => '#' + t).join(' ') : ''}
+              </div>
+            </div>
+            <div class="article-item-actions">
+              <button class="btn-edit" onclick="editArticle('${d.id}')">編輯</button>
+              <button class="btn-delete" onclick="deleteArticle('${d.id}', '${(data.title || '').replace(/'/g, '')}')">刪除</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+    } catch (err) {
+      console.error(err);
+      listEl.innerHTML = '<div class="empty-list">讀取失敗，請重新整理</div>';
+    }
+  }
+
+  /* ===== 編輯文章 ===== */
+  window.editArticle = async function(id) {
+    const docSnap = await (await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")).getDoc(doc(db, 'articles', id));
+    if (!docSnap.exists()) return;
+    const data = docSnap.data();
+
+    editingId = id;
+    document.getElementById('f-type').value = data.type || 'blog';
+    document.getElementById('f-title').value = data.title || '';
+    document.getElementById('f-date').value = data.date || '';
+    document.getElementById('f-tags').value = (data.tags || []).join(',');
+    document.getElementById('f-excerpt').value = data.excerpt || '';
+    document.getElementById('f-cover').value = data.coverUrl || '';
+    if (data.coverUrl) {
+      document.getElementById('cover-preview-img').src = data.coverUrl;
+      document.getElementById('cover-preview').style.display = 'block';
+    } else {
+      document.getElementById('cover-preview').style.display = 'none';
+    }
+    quill.root.innerHTML = data.content || '';
+    document.getElementById('edit-tab-btn').textContent = '✏️ 編輯文章';
+    showTab('edit');
+  };
+
+  /* ===== 刪除文章 ===== */
+  window.deleteArticle = async function(id, title) {
+    if (!confirm(`確定要刪除「${title}」嗎？此操作無法復原。`)) return;
+    try {
+      await deleteDoc(doc(db, 'articles', id));
+      loadArticles();
+    } catch (err) {
+      alert('刪除失敗，請再試一次');
+    }
+  };
+
+</script>
+</body>
+</html>

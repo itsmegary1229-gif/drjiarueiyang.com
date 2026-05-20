@@ -1,0 +1,111 @@
+/* ============================================
+   楊佳叡醫師個人網站 — 主要 JavaScript
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* --- 漢堡選單開關 --- */
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (link.parentElement.classList.contains('mobile-nav-item') && link.nextElementSibling) {
+          return;
+        }
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    mobileMenu.querySelectorAll('.mobile-dropdown a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* --- 手機版下拉選單點擊展開 --- */
+  document.querySelectorAll('.mobile-nav-item > a').forEach(function (trigger) {
+    trigger.addEventListener('click', function (e) {
+      var parent = trigger.parentElement;
+      if (parent.querySelector('.mobile-dropdown')) {
+        e.preventDefault();
+        parent.classList.toggle('open');
+      }
+    });
+  });
+
+  /* --- Hashtag 篩選功能（用於知識專欄 & 案例分享） --- */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const filterItems = document.querySelectorAll('[data-tags]');
+
+  if (filterBtns.length > 0 && filterItems.length > 0) {
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        var tag = btn.getAttribute('data-filter');
+
+        filterItems.forEach(function (item) {
+          if (tag === 'all') {
+            item.style.display = '';
+          } else {
+            var tags = item.getAttribute('data-tags').split(',');
+            item.style.display = tags.indexOf(tag) !== -1 ? '' : 'none';
+          }
+        });
+      });
+    });
+  }
+
+  /* --- 證書圖片點擊放大（Lightbox） --- */
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll('.cert-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var imgSrc = item.getAttribute('data-full');
+        if (imgSrc) {
+          lightboxImg.src = imgSrc;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    lightbox.addEventListener('click', function () {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
+
+  /* --- 滾動淡入動畫 --- */
+  var fadeEls = document.querySelectorAll('.fade-in');
+
+  if (fadeEls.length > 0) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeEls.forEach(function (el) { observer.observe(el); });
+  }
+
+});

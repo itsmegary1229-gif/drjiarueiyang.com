@@ -1,0 +1,76 @@
+/* ============================================
+   醫療項目頁樣式
+   ============================================ */
+
+/* --- 類別卡片 --- */
+.section-treatments {
+  padding: 0 0 var(--section-gap);
+}
+
+.treatment-card {
+  display: block;
+  padding: 48px 32px;
+  border: 1px solid var(--color-border);
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.treatment-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 20px rgba(38, 33, 92, 0.06);
+}
+
+.treatment-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.treatment-card p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+.treatment-card .card-arrow {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+/* --- 子頁面：項目列表 --- */
+.treatment-page {
+  padding: var(--section-gap) 0;
+}
+
+.treatment-page .container {
+  max-width: 800px;
+}
+
+.treatment-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.treatment-items li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 16px;
+  color: var(--color-text-primary);
+}
+
+.treatment-items li:last-child {
+  border-bottom: none;
+}
+
+/* ============================================
+   RWD — 手機
+   ============================================ */
+@media (max-width: 767px) {
+  .treatment-card {
+    padding: 32px 20px;
+  }
+}
