@@ -45,6 +45,7 @@ function createCardHTML(doc) {
   const date = data.date || '';
   const tags = data.tags || [];
   const coverUrl = data.coverUrl || '';
+  const category = data.category || '';
 
   const tagsHTML = tags.map(tag => `<span class="card-tag">#${tag}</span>`).join('');
   const coverHTML = coverUrl
@@ -53,7 +54,7 @@ function createCardHTML(doc) {
   const dataTags = tags.join(',');
 
   return `
-    <a href="article.html?id=${id}" class="card" data-tags="${dataTags}">
+    <a href="article.html?id=${id}" class="card" data-tags="${dataTags}" data-category="${category}">
       ${coverHTML}
       <div class="card-date">${date}</div>
       <div class="card-tags">${tagsHTML}</div>
@@ -63,6 +64,10 @@ function createCardHTML(doc) {
     </a>
   `;
 }
+
+/* ---------- 全域狀態 ---------- */
+let allDocs = [];         // 所有文章 doc
+let currentCategory = 'all';  // 目前選中的大分類
 
 /* ---------- 主程式 ---------- */
 
@@ -79,21 +84,28 @@ async function loadArticles() {
   try {
     const q = query(collection(db, 'articles'), orderBy('date', 'desc'));
     const snapshot = await getDocs(q);
-    const docs = snapshot.docs.filter(doc => doc.data().type === pageType);
+    allDocs = snapshot.docs.filter(doc => doc.data().type === pageType);
 
-    if (docs.length === 0) {
+    if (allDocs.length === 0) {
       grid.innerHTML = '<p style="text-align:center; color:#999; padding: 40px 0; grid-column:1/-1;">目前尚無文章。</p>';
       return;
     }
 
-    // 淡出骨架，淡入真實卡片
+    // 渲染卡片
     grid.style.opacity = '0';
-    grid.innerHTML = docs.map(createCardHTML).join('');
+    grid.innerHTML = allDocs.map(createCardHTML).join('');
     requestAnimationFrame(() => {
       grid.style.transition = 'opacity 0.3s ease';
       grid.style.opacity = '1';
     });
 
+    // 建立 hashtag 篩選按鈕（依全部文章）
+    buildFilterButtons(allDocs);
+
+    // 綁定大分類按鈕
+    bindCategoryButtons();
+
+    // 綁定 hashtag 篩選
     rebindFilter();
 
   } catch (error) {
@@ -102,134 +114,127 @@ async function loadArticles() {
   }
 }
 
-/* ---------- 重新綁定篩選功能 ---------- */
+/* ---------- 大分類篩選 ---------- */
 
-function rebindFilter() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const filterItems = document.querySelectorAll('[data-tags]');
+function bindCategoryButtons() {
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  if (categoryBtns.length === 0) return;
 
-  filterBtns.forEach(function (btn) {
+  categoryBtns.forEach(btn => {
     btn.addEventListener('click', function () {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      categoryBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const tag = btn.getAttribute('data-filter');
-      filterItems.forEach(function (item) {
-        if (tag === 'all') {
-          item.style.display = '';
-        } else {
-          const tags = item.getAttribute('data-tags').split(',');
-          item.style.display = tags.includes(tag) ? '' : 'none';
-        }
-      });
+      currentCategory = btn.getAttribute('data-category');
+      applyFilters();
+      // 更新 hashtag 按鈕列：只顯示該分類相關的標籤
+      updateHashtagButtons();
     });
   });
 }
 
-loadArticles();
+/* ---------- 動態產生 hashtag 篩選按鈕 ---------- */
 
+function buildFilterButtons(docs) {
+  const filterBar = document.getElementById('filter-bar');
+  if (!filterBar) return;
 
-/* ---------- 工具函式 ---------- */
+  // 收集所有標籤並去除重複
+  const tagSet = new Set();
+  docs.forEach(doc => {
+    const tags = doc.data().tags || [];
+    tags.forEach(tag => tagSet.add(tag));
+  });
 
-// 判斷目前在哪個頁面（blog 或 cases）
-function getPageType() {
-  const path = window.location.pathname;
-  if (path.includes('/blog/')) return 'blog';
-  if (path.includes('/cases/')) return 'case';
-  return null;
+  // 如果沒有任何標籤，隱藏篩選列
+  if (tagSet.size === 0) return;
+
+  // 在「全部」按鈕後面動態加入標籤按鈕
+  tagSet.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.setAttribute('data-filter', tag);
+    btn.textContent = '#' + tag;
+    filterBar.appendChild(btn);
+  });
 }
 
-// 產生一張文章卡片的 HTML
-function createCardHTML(doc) {
-  const data = doc.data();
-  const id = doc.id;
-  const title = data.title || '（未命名文章）';
-  const excerpt = data.excerpt || '';
-  const date = data.date || '';
-  const tags = data.tags || [];
-  const coverUrl = data.coverUrl || '';
+/** 根據目前選中的大分類，更新 hashtag 按鈕的顯示/隱藏 */
+function updateHashtagButtons() {
+  const filterBar = document.getElementById('filter-bar');
+  if (!filterBar) return;
 
-  // 標籤 HTML
-  const tagsHTML = tags.map(tag => `<span class="card-tag">#${tag}</span>`).join('');
-
-  // 封面圖：有圖片就顯示，沒有就顯示佔位符
-  const coverHTML = coverUrl
-    ? `<img src="${coverUrl}" alt="${title}" class="card-image" loading="lazy" style="width:100%; height:200px; object-fit:cover;">`
-    : `<div class="img-placeholder card-image"><span>文章封面圖</span></div>`;
-
-  // data-tags 供篩選功能使用
-  const dataTags = tags.join(',');
-
-  return `
-    <a href="article.html?id=${id}" class="card" data-tags="${dataTags}">
-      ${coverHTML}
-      <div class="card-date">${date}</div>
-      <div class="card-tags">${tagsHTML}</div>
-      <h3 class="card-title">${title}</h3>
-      <p class="card-excerpt">${excerpt}</p>
-      <span class="card-link">閱讀更多 →</span>
-    </a>
-  `;
-}
-
-/* ---------- 主程式：讀取並顯示文章 ---------- */
-
-async function loadArticles() {
-  const pageType = getPageType();
-  if (!pageType) return;
-
-  const grid = document.querySelector('.article-grid');
-  if (!grid) return;
-
-  // 顯示讀取中
-  grid.innerHTML = '<p style="text-align:center; color:#999; padding: 40px 0;">載入中⋯⋯</p>';
-
-  try {
-    // 從 Firebase 讀取文章，按日期排序（最新在前）
-    const q = query(collection(db, 'articles'), orderBy('date', 'desc'));
-    const snapshot = await getDocs(q);
-
-    // 過濾出符合目前頁面的文章（blog 或 case）
-    const docs = snapshot.docs.filter(doc => doc.data().type === pageType);
-
-    if (docs.length === 0) {
-      grid.innerHTML = '<p style="text-align:center; color:#999; padding: 40px 0;">目前尚無文章。</p>';
-      return;
+  // 先重設 hashtag 篩選為「全部」
+  filterBar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-filter') === 'all') {
+      btn.classList.add('active');
     }
+  });
 
-    // 產生所有卡片
-    grid.innerHTML = docs.map(createCardHTML).join('');
+  if (currentCategory === 'all') {
+    // 全部分類 → 顯示所有 hashtag
+    filterBar.querySelectorAll('.filter-btn').forEach(btn => btn.style.display = '');
+  } else {
+    // 收集該分類下文章的所有標籤
+    const catTags = new Set();
+    allDocs.forEach(doc => {
+      const data = doc.data();
+      if (data.category === currentCategory) {
+        (data.tags || []).forEach(t => catTags.add(t));
+      }
+    });
 
-    // 重新套用篩選功能（因為是動態產生的內容）
-    rebindFilter();
-
-  } catch (error) {
-    console.error('讀取文章失敗：', error);
-    grid.innerHTML = '<p style="text-align:center; color:#999; padding: 40px 0;">讀取失敗，請稍後再試。</p>';
+    filterBar.querySelectorAll('.filter-btn').forEach(btn => {
+      const tag = btn.getAttribute('data-filter');
+      if (tag === 'all') {
+        btn.style.display = '';
+      } else {
+        btn.style.display = catTags.has(tag) ? '' : 'none';
+      }
+    });
   }
+
+  // 重新綁定篩選
+  rebindFilter();
 }
 
-/* ---------- 重新綁定篩選功能 ---------- */
+/* ---------- 綁定 hashtag 篩選功能 ---------- */
 
 function rebindFilter() {
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const filterItems = document.querySelectorAll('[data-tags]');
 
   filterBtns.forEach(function (btn) {
+    // 移除舊事件（用 clone 方式）
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+  });
+
+  // 重新綁定
+  document.querySelectorAll('.filter-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const tag = btn.getAttribute('data-filter');
-      filterItems.forEach(function (item) {
-        if (tag === 'all') {
-          item.style.display = '';
-        } else {
-          const tags = item.getAttribute('data-tags').split(',');
-          item.style.display = tags.includes(tag) ? '' : 'none';
-        }
-      });
+      applyFilters();
     });
   });
 }
 
-// 頁面載入後執行
+/* ---------- 統一套用篩選（大分類 + hashtag） ---------- */
+
+function applyFilters() {
+  const activeHashtagBtn = document.querySelector('.filter-btn.active');
+  const selectedTag = activeHashtagBtn ? activeHashtagBtn.getAttribute('data-filter') : 'all';
+
+  const cards = document.querySelectorAll('.article-grid [data-tags]');
+  cards.forEach(card => {
+    const cardCategory = card.getAttribute('data-category') || '';
+    const cardTags = card.getAttribute('data-tags').split(',');
+
+    let showByCategory = (currentCategory === 'all') || (cardCategory === currentCategory);
+    let showByTag = (selectedTag === 'all') || cardTags.includes(selectedTag);
+
+    card.style.display = (showByCategory && showByTag) ? '' : 'none';
+  });
+}
+
 loadArticles();

@@ -1,0 +1,366 @@
+/* ===== 專長項目詳細頁 ===== */
+
+.treatment-detail {
+  padding: 60px 0 100px;
+}
+
+.detail-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* 引言 */
+.detail-intro {
+  margin-bottom: 56px;
+}
+
+.detail-intro p {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 2;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+/* 各段落區塊 */
+.detail-section {
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 0.5px solid #ece8e0;
+}
+
+.detail-section:last-of-type {
+  border-bottom: none;
+}
+
+.detail-section h2 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2d2a5e;
+  letter-spacing: 0.05em;
+  margin: 0 0 28px 0;
+  padding: 0;
+  border: none;
+  display: block;
+}
+
+/* 整合照護中心（強調區塊） */
+.highlight-section {
+  background: #f7f4ef;
+  border-left: 3px solid #2d2a5e;
+  border-radius: 0 8px 8px 0;
+  padding: 32px 36px;
+  border-bottom: none;
+  margin-bottom: 56px;
+}
+
+.highlight-section h2 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2d2a5e;
+  letter-spacing: 0.05em;
+  margin: 0 0 20px 0;
+  padding: 0;
+  border: none;
+  display: block;
+}
+
+.highlight-section p {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 2;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.highlight-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* 子項目 */
+.detail-item {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 0.5px solid #f0ebe3;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.detail-item h3 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: #2d2a5e;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.03em;
+}
+
+.detail-item p {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 2;
+  color: #555;
+  margin: 0 0 12px 0;
+}
+
+/* 就診清單 */
+.detail-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detail-checklist li {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #555;
+  padding: 12px 0 12px 28px;
+  border-bottom: 0.5px solid #f0ebe3;
+  position: relative;
+}
+
+.detail-checklist li:last-child {
+  border-bottom: none;
+}
+
+.detail-checklist li::before {
+  content: '◆';
+  font-size: 7px;
+  color: #c9a84c;
+  position: absolute;
+  left: 4px;
+  top: 16px;
+}
+
+/* 延伸閱讀標題 */
+.detail-related h2 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2d2a5e;
+  letter-spacing: 0.05em;
+  margin: 0 0 24px 0;
+  padding: 0;
+  border: none;
+  display: block;
+}
+
+/* 延伸閱讀 */
+.related-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.related-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 24px 20px;
+  background: #ffffff;
+  border: 0.5px solid #e0d9cc;
+  border-top: 2px solid #2d2a5e;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  min-height: 110px;
+}
+
+.related-link:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  transform: translateY(-2px);
+}
+
+.related-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #2d2a5e;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+
+.related-arrow {
+  font-size: 13px;
+  color: #c9a84c;
+  margin-top: 14px;
+  display: block;
+  letter-spacing: 0.04em;
+}
+
+/* 延伸閱讀佔位符（文章尚未發布時使用） */
+.related-link-placeholder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 20px;
+  background: #fafaf8;
+  border: 0.5px dashed #d4c5a9;
+  border-radius: 8px;
+  gap: 16px;
+}
+
+.placeholder-text {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #aaa;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.placeholder-badge {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 11px;
+  color: #c9a84c;
+  border: 0.5px solid #c9a84c;
+  border-radius: 20px;
+  padding: 3px 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 預約諮詢 */
+.detail-cta {
+  text-align: center;
+  padding: 48px 0 0;
+}
+
+.detail-cta p {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+  letter-spacing: 0.04em;
+}
+
+.cta-button {
+  display: inline-block;
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: #2d2a5e;
+  border: 1px solid #2d2a5e;
+  border-radius: 30px;
+  padding: 12px 36px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #2d2a5e;
+  color: #fff;
+}
+
+/* ===== 症狀對應清單 ===== */
+.symptom-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.symptom-item {
+  padding: 16px 0;
+  border-bottom: 0.5px solid #f0ebe3;
+}
+
+.symptom-item:last-child {
+  border-bottom: none;
+}
+
+.symptom-desc {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+
+.symptom-arrow {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 14px;
+  color: #c9a84c;
+  line-height: 1.6;
+  padding-left: 4px;
+}
+
+.symptom-note {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 12px;
+  color: #bbb;
+  margin-top: 16px;
+  letter-spacing: 0.02em;
+}
+
+/* ===== 行內延伸閱讀 ===== */
+.inline-related {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: #fdf9f0;
+  border-left: 2.5px solid #c9a84c;
+  border-radius: 0 6px 6px 0;
+}
+
+.inline-related-label {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #c9a84c;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.inline-related-link {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 14.5px;
+  color: #2d2a5e;
+  text-decoration: none;
+  line-height: 1.6;
+}
+
+.inline-related-link:hover {
+  text-decoration: underline;
+}
+
+.coming-soon {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #bbb;
+  border: 0.5px solid #ddd;
+  border-radius: 20px;
+  padding: 1px 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+  .detail-container {
+    padding: 0 16px;
+  }
+  .highlight-section {
+    padding: 24px 20px;
+  }
+  .treatment-detail {
+    padding: 40px 0 80px;
+  }
+  .related-links {
+    grid-template-columns: 1fr;
+  }
+  .treatments-container {
+    padding: 0 16px 60px;
+  }
+}

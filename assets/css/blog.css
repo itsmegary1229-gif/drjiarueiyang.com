@@ -7,6 +7,61 @@
   padding: 0 0 16px;
 }
 
+/* --- 大分類按鈕列 --- */
+.category-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: 8px 22px;
+  border-radius: 24px;
+  border: 1.5px solid #2d2a5e;
+  background: transparent;
+  color: #2d2a5e;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.03em;
+  transition: background 0.15s, color 0.15s;
+}
+
+.category-btn.active,
+.category-btn:hover {
+  background: #2d2a5e;
+  color: #fff;
+}
+
+/* --- 分類與標籤之間的分隔線 --- */
+.category-divider {
+  width: 40px;
+  height: 1px;
+  background: #d4c5a9;
+  margin: 20px auto;
+}
+
+/* --- Hashtag 篩選按鈕（次要輔助樣式） --- */
+.filter-bar .filter-btn {
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid #d4c5a9;
+  background: transparent;
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.filter-bar .filter-btn.active,
+.filter-bar .filter-btn:hover {
+  border-color: #2d2a5e;
+  color: #2d2a5e;
+  background: transparent;
+}
+
 /* --- 文章列表 --- */
 .section-articles {
   padding: 0 0 var(--section-gap);
@@ -18,7 +73,7 @@
 }
 
 .article-page .container {
-  max-width: 800px;
+  max-width: 960px;
 }
 
 .article-header {
@@ -45,6 +100,22 @@
   gap: 10px;
 }
 
+.article-tags .card-tag {
+  color: #C9A84C;
+}
+
+.article-disclaimer {
+  border: 1px solid #c9a84c;
+  background: #fdf9f0;
+  color: #5a4e3a;
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 16px 24px;
+  border-radius: 4px;
+  margin: 24px 0 32px;
+  text-align: center;
+}
+
 .article-cover {
   width: 100%;
   height: 420px;
@@ -64,13 +135,17 @@
 }
 
 .article-body h3 {
-  margin: 32px 0 12px;
+  margin: 2.5em 0 12px;
   font-size: 20px;
 }
 
 .article-body p {
   margin-bottom: 20px;
 }
+
+/* 空段落（後台編輯器插入的空行）保留視覺高度 */
+.article-body p:empty { min-height: 1em; }
+.article-body p > br:only-child { display: block; margin-bottom: 0.8em; }
 
 .article-body blockquote {
   border-left: 3px solid var(--color-accent);
@@ -92,11 +167,8 @@
 }
 
 .article-body ul {
-  list-style: disc;
-}
-
-.article-body ol {
-  list-style: decimal;
+  padding-left: 1.5em;
+  list-style-type: disc;
 }
 
 .article-body li {
@@ -104,24 +176,126 @@
   line-height: 1.8;
 }
 
+/* 巢狀清單：二層縮排 + 不同符號 */
+.article-body ul ul {
+  padding-left: 1.8em;
+  list-style-type: circle;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.article-body ul ul li {
+  margin-bottom: 4px;
+}
+
+/* ---- Quill 有序清單：用 CSS counter 處理扁平結構的多層編號 ---- */
+
+/* ol 本身關閉瀏覽器預設編號，改用 counter 控制 */
+.article-body ol {
+  list-style: none;
+  counter-reset: ol-lv0;
+}
+
+/* 第 0 層（無 ql-indent）：阿拉伯數字 1. 2. 3.，並重設第 1 層計數器 */
+.article-body ol > li:not([class*="ql-indent"]) {
+  counter-increment: ol-lv0;
+  counter-reset: ol-lv1;
+}
+.article-body ol > li:not([class*="ql-indent"])::before {
+  content: counter(ol-lv0) ". ";
+  font-weight: 500;
+}
+
+/* 第 1 層（ql-indent-1）：英文字母 a. b. c.，每遇到第 0 層會被重設 */
+.article-body ol > li.ql-indent-1 {
+  counter-increment: ol-lv1;
+  counter-reset: ol-lv2;
+  padding-left: 1.5em;
+}
+.article-body ol > li.ql-indent-1::before {
+  content: counter(ol-lv1, lower-alpha) ". ";
+}
+
+/* 第 2 層（ql-indent-2）：小寫羅馬數字 i. ii. iii. */
+.article-body ol > li.ql-indent-2 {
+  counter-increment: ol-lv2;
+  padding-left: 3em;
+}
+.article-body ol > li.ql-indent-2::before {
+  content: counter(ol-lv2, lower-roman) ". ";
+}
+
+/* ---- Quill 無序清單縮排（ul 不受 counter 影響） ---- */
+.article-body ul > li.ql-indent-1 { padding-left: 1.5em; }
+.article-body ul > li.ql-indent-2 { padding-left: 3em; }
+.article-body ul > li.ql-indent-3 { padding-left: 4.5em; }
+.article-body ul > li.ql-indent-4 { padding-left: 6em; }
+.article-body ul > li.ql-indent-5 { padding-left: 7.5em; }
+
+/* ---- 通用縮排（非清單元素，例如 blockquote、p 的縮排） ---- */
+.article-body :not(li).ql-indent-1 { padding-left: 3em; }
+.article-body :not(li).ql-indent-2 { padding-left: 6em; }
+.article-body :not(li).ql-indent-3 { padding-left: 9em; }
+
+.article-table-wrapper {
+  overflow-x: auto;
+  margin: 32px 0;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
 .article-body table {
   width: 100%;
   border-collapse: collapse;
-  margin: 32px 0;
-  font-size: 15px;
+  font-size: 14px;
+  min-width: 600px;
+}
+
+.article-body thead th {
+  background: #1a2340;
+  color: #fff;
+  font-weight: 500;
+  padding: 14px 16px;
+  text-align: center;
+  border: none;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+
+.article-body thead th:last-child {
+  border-right: none;
 }
 
 .article-body th,
 .article-body td {
   padding: 12px 16px;
-  border: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   text-align: left;
+  vertical-align: top;
+  line-height: 1.7;
 }
 
-.article-body th {
-  background: var(--color-primary);
-  color: var(--color-bg);
+.article-body tbody td:first-child {
+  background: rgba(38, 33, 92, 0.05);
   font-weight: 500;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.article-body tbody td {
+  background: #fff;
+  border-right: 1px solid var(--color-border);
+}
+
+.article-body tbody td:last-child {
+  border-right: none;
+}
+
+.article-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.article-table-wrapper td,
+.article-table-wrapper th {
+  white-space: nowrap;
 }
 
 .article-figure {
@@ -165,6 +339,13 @@
   .article-body blockquote {
     padding: 12px 16px;
     margin: 24px 0;
+  }
+
+  .article-table-wrapper {
+    margin: 24px -16px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
 
   .related-articles .grid-3 {

@@ -36,9 +36,10 @@
         <div class="nav-item has-dropdown">
           <a href="../treatments/index.html">專長項目</a>
           <div class="dropdown">
-            <a href="../treatments/craniofacial.html">顱顏重建</a>
-            <a href="../treatments/facial.html">顏面整形</a>
-            <a href="../treatments/cosmetic.html">美容手術</a>
+            <a href="../treatments/index.html#craniofacial">顱顏外傷重建</a>
+            <a href="../treatments/index.html#wound">慢性傷口重建</a>
+            <a href="../treatments/index.html#contouring">顏面輪廓雕塑</a>
+            <a href="../treatments/index.html#rejuvenation">臉部年輕化手術</a>
           </div>
         </div>
         <a href="index.html" class="active">知識專欄</a>
@@ -73,9 +74,10 @@
     <div class="mobile-nav-item">
       <a href="../treatments/index.html">專長項目</a>
       <div class="mobile-dropdown">
-        <a href="../treatments/craniofacial.html">顱顏重建</a>
-        <a href="../treatments/facial.html">顏面整形</a>
-        <a href="../treatments/cosmetic.html">美容手術</a>
+        <a href="../treatments/index.html#craniofacial">顱顏外傷重建</a>
+        <a href="../treatments/index.html#wound">慢性傷口重建</a>
+        <a href="../treatments/index.html#contouring">顏面輪廓雕塑</a>
+        <a href="../treatments/index.html#rejuvenation">臉部年輕化手術</a>
       </div>
     </div>
     <a href="index.html">知識專欄</a>
@@ -98,18 +100,25 @@
     </div>
   </section>
 
-  <!-- ===== Hashtag 篩選列 ===== -->
+  <!-- ===== 大分類篩選 ===== -->
+  <section class="section-filter" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="category-bar" id="category-bar">
+        <button class="category-btn active" data-category="all">全部</button>
+        <button class="category-btn" data-category="整形重建">整形重建</button>
+        <button class="category-btn" data-category="整形美容">整形美容</button>
+        <button class="category-btn" data-category="傷口照護">傷口照護</button>
+        <button class="category-btn" data-category="衛教知識">衛教知識</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 分隔線 + Hashtag 篩選列 ===== -->
   <section class="section-filter">
     <div class="container">
-      <div class="filter-bar">
+      <div class="category-divider"></div>
+      <div class="filter-bar" id="filter-bar">
         <button class="filter-btn active" data-filter="all">全部</button>
-        <button class="filter-btn" data-filter="顱顏重建">#顱顏重建</button>
-        <button class="filter-btn" data-filter="正顎手術">#正顎手術</button>
-        <button class="filter-btn" data-filter="上眼皮手術">#上眼皮手術</button>
-        <button class="filter-btn" data-filter="眼袋手術">#眼袋手術</button>
-        <button class="filter-btn" data-filter="顏面整形">#顏面整形</button>
-        <button class="filter-btn" data-filter="慢性傷口">#慢性傷口</button>
-        <button class="filter-btn" data-filter="衛教知識">#衛教知識</button>
       </div>
     </div>
   </section>
@@ -144,7 +153,6 @@
         <div class="footer-info">
           <h4>聯絡方式</h4>
           <div class="footer-contact">
-            <p>Email：<a href="mailto:itsmegary1229@gmail.com">itsmegary1229@gmail.com</a></p>
             <p>LINE ID：itsmegary1229</p>
           </div>
           <h4 style="margin-top: 24px;">相關連結</h4>

@@ -53,8 +53,16 @@ async function loadArticle() {
       `;
     }
 
-    // 填入文章內文
-    document.getElementById('article-body').innerHTML = data.content || '<p>（文章內容尚未填寫）</p>';
+    // 填入文章內文（支援 bodyBlocks 新格式，向下相容舊 content）
+    let articleContent = '';
+    if (data.bodyBlocks && Array.isArray(data.bodyBlocks) && data.bodyBlocks.length > 0) {
+      // 新格式：依序串接所有區塊
+      articleContent = data.bodyBlocks.map(block => block.content || '').join('\n');
+    } else {
+      // 舊格式：直接使用 content 欄位
+      articleContent = data.content || '<p>（文章內容尚未填寫）</p>';
+    }
+    document.getElementById('article-body').innerHTML = articleContent;
 
     // 根據文章類型決定返回按鈕的連結
     const backBtn = document.getElementById('back-btn');

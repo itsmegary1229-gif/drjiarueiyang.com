@@ -66,11 +66,132 @@
   border-bottom: none;
 }
 
+/* ===== 四大專長項目（新版） ===== */
+
+.treatments-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.treatment-group {
+  margin-bottom: 52px;
+}
+
+.group-label {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: #b0a898;
+  text-transform: uppercase;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid #d4c5a9;
+  margin-bottom: 24px;
+}
+
+.treatment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.treatment-card {
+  background: #ffffff;
+  border: 0.5px solid #e8e2d9;
+  border-top: 1.5px solid #2d2a5e;
+  border-radius: 8px;
+  padding: 30px 26px;
+  display: block;
+  text-align: left;
+}
+
+.treatment-card-title {
+  font-family: 'Noto Serif TC', 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #2d2a5e;
+  margin: 0 0 14px 0;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+.treatment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.treatment-tag {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 11px;
+  color: #b0a898;
+  border: 0.5px solid #e0d9cc;
+  border-radius: 20px;
+  padding: 2px 10px;
+  letter-spacing: 0.02em;
+}
+
+.treatment-desc {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #999;
+  margin: 0 0 20px 0;
+  letter-spacing: 0.02em;
+}
+
+.treatment-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #c9a84c;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.treatment-link:hover {
+  text-decoration: underline;
+}
+
+.other-services {
+  border-top: 0.5px solid #e0d9cc;
+  padding-top: 32px;
+  text-align: center;
+}
+
+.other-services-label {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: #bbb;
+  margin-bottom: 14px;
+}
+
+.other-services-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.other-tag {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 13px;
+  color: #999;
+  border: 0.5px solid #d4c5a9;
+  border-radius: 20px;
+  padding: 6px 18px;
+}
+
 /* ============================================
    RWD — 手機
    ============================================ */
 @media (max-width: 767px) {
-  .treatment-card {
-    padding: 32px 20px;
+  .treatment-grid {
+    grid-template-columns: 1fr;
+  }
+  .treatments-container {
+    padding: 0 16px 60px;
   }
 }

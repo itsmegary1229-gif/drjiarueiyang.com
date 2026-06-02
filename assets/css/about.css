@@ -138,10 +138,31 @@
 .cert-item {
   cursor: pointer;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cert-item:hover {
   transform: translateY(-4px);
+}
+
+.cert-item img {
+  width: 100%;
+  height: 380px;
+  object-fit: contain;
+  object-position: center;
+  background: #f9f7f4;
+  display: block;
+}
+
+.cert-item p,
+.cert-item span {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 13px;
+  color: #888;
+  margin-top: 12px;
+  text-align: center;
 }
 
 /* Lightbox */
@@ -246,20 +267,131 @@
   border-top: 1px solid var(--color-border);
 }
 
+/* ===== 演講經歷列表 ===== */
 .lecture-list {
-  list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
-.lecture-list li {
+.lecture-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 0.5px solid #e8e2d9;
+}
+
+.lecture-row:last-child {
+  border-bottom: none;
+}
+
+.lecture-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #aaa;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+.lecture-title {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
   font-size: 15px;
-  color: var(--color-text-secondary);
-  padding: 10px 0;
-  border-bottom: 1px solid var(--color-border);
+  color: #2d2a5e;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.lecture-venue {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 13px;
+  color: #888;
+}
+
+.lecture-tag {
+  display: inline-block;
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 11px;
+  color: #aaa;
+  border: 0.5px solid #d4c5a9;
+  border-radius: 20px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.lecture-section {
+  margin-bottom: 8px;
+}
+
+.lecture-section-label {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #aaa;
+  text-transform: uppercase;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid #e8e2d9;
+  margin-bottom: 0;
+}
+
+.lecture-location {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #bbb;
+  margin-top: 2px;
+  line-height: 1.5;
+}
+
+.lecture-venue-full {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #bbb;
+  line-height: 1.6;
+  margin-bottom: 4px;
   font-style: italic;
 }
 
-.lecture-list li:last-child {
+/* ===== 獎項列表 ===== */
+.award-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.award-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 0.5px solid #e8e2d9;
+}
+
+.award-row:last-child {
   border-bottom: none;
+}
+
+.award-year {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #aaa;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 52px;
+}
+
+.award-title {
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 15px;
+  color: #2d2a5e;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+
+.award-org {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-size: 13px;
+  color: #888;
 }
 
 /* --- 獎項 --- */

@@ -35,9 +35,10 @@
         <div class="nav-item has-dropdown">
           <a href="treatments/index.html">專長項目</a>
           <div class="dropdown">
-            <a href="treatments/craniofacial.html">顱顏重建</a>
-            <a href="treatments/facial.html">顏面整形</a>
-            <a href="treatments/cosmetic.html">美容手術</a>
+            <a href="treatments/index.html#craniofacial">顱顏外傷重建</a>
+            <a href="treatments/index.html#wound">慢性傷口重建</a>
+            <a href="treatments/index.html#contouring">顏面輪廓雕塑</a>
+            <a href="treatments/index.html#rejuvenation">臉部年輕化手術</a>
           </div>
         </div>
         <a href="blog/index.html">知識專欄</a>
@@ -72,9 +73,10 @@
     <div class="mobile-nav-item">
       <a href="treatments/index.html">專長項目</a>
       <div class="mobile-dropdown">
-        <a href="treatments/craniofacial.html">顱顏重建</a>
-        <a href="treatments/facial.html">顏面整形</a>
-        <a href="treatments/cosmetic.html">美容手術</a>
+        <a href="treatments/index.html#craniofacial">顱顏外傷重建</a>
+        <a href="treatments/index.html#wound">慢性傷口重建</a>
+        <a href="treatments/index.html#contouring">顏面輪廓雕塑</a>
+        <a href="treatments/index.html#rejuvenation">臉部年輕化手術</a>
       </div>
     </div>
     <a href="blog/index.html">知識專欄</a>
@@ -109,6 +111,10 @@
       </div>
       <div class="schedule-table-wrapper">
         <table class="schedule-table">
+          <colgroup>
+            <col class="col-time">
+            <col><col><col><col><col><col>
+          </colgroup>
           <thead>
             <tr>
               <th>時段</th>
@@ -128,21 +134,21 @@
               <td class="slot-jah">大里仁愛<br><span>健保門診</span></td>
               <td></td>
               <td></td>
-              <td></td>
+              <td class="slot-jah">大里仁愛<br><span>健保門診<br><span style="font-size:12px; color:#999;">（每月第四週）</span></span></td>
             </tr>
             <tr>
               <td class="time-label">下午</td>
               <td></td>
-              <td class="slot-jah">大里仁愛<br><span>美容中心</span></td>
               <td></td>
-              <td class="slot-cgmh">桃園長庚<br><span>健保門診</span></td>
+              <td></td>
+              <td class="slot-cgmh">桃園長庚<br><span>健保門診<br><span style="font-size:12px; color:#999;">（每月單週）</span></span></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td class="time-label">夜診</td>
               <td></td>
-              <td></td>
+              <td class="slot-jah">大里仁愛<br><span>美容中心</span></td>
               <td class="slot-cgmh">桃園長庚<br><span>美容中心</span></td>
               <td></td>
               <td></td>
@@ -203,7 +209,7 @@
       </div>
       <div class="contact-grid">
         <div class="contact-form-wrapper">
-          <form class="contact-form" action="" method="POST">
+          <form class="contact-form" action="https://formspree.io/f/xjgznzwj" method="POST">
             <div class="form-field">
               <label for="contact-name">姓名 *</label>
               <input type="text" id="contact-name" name="name" required>
@@ -220,6 +226,7 @@
               <label for="contact-message">訊息內容 Message</label>
               <textarea id="contact-message" name="message" rows="5"></textarea>
             </div>
+            <input type="hidden" name="_next" value="https://drjiarueiyang.com/appointment.html?sent=true">
             <button type="submit" class="btn-primary">送出 →</button>
           </form>
         </div>
@@ -256,7 +263,6 @@
         <div class="footer-info">
           <h4>聯絡方式</h4>
           <div class="footer-contact">
-            <p>Email：<a href="mailto:itsmegary1229@gmail.com">itsmegary1229@gmail.com</a></p>
             <p>LINE ID：itsmegary1229</p>
           </div>
           <h4 style="margin-top: 24px;">相關連結</h4>
