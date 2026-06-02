@@ -365,6 +365,27 @@ p {
   color: #B8A050;
 }
 
+.mobile-dropdown-toggle {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--color-primary);
+  font-size: 14px;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+.mobile-dropdown-toggle::after {
+  content: '▾';
+}
+
+.mobile-nav-item.open > .mobile-dropdown-toggle::after {
+  content: '▴';
+}
+
 /* ============================================
    頁尾
    ============================================ */

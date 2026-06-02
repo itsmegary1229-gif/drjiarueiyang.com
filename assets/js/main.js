@@ -15,18 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
 
+    // 點擊任何連結都關閉選單
     mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (link.parentElement.classList.contains('mobile-nav-item') && link.nextElementSibling) {
-          return;
-        }
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    mobileMenu.querySelectorAll('.mobile-dropdown a').forEach(function (link) {
       link.addEventListener('click', function () {
         hamburger.classList.remove('active');
         mobileMenu.classList.remove('active');
@@ -35,14 +25,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* --- 手機版下拉選單點擊展開 --- */
-  document.querySelectorAll('.mobile-nav-item > a').forEach(function (trigger) {
-    trigger.addEventListener('click', function (e) {
-      var parent = trigger.parentElement;
-      if (parent.querySelector('.mobile-dropdown')) {
-        e.preventDefault();
-        parent.classList.toggle('open');
-      }
+  /* --- 手機版下拉選單：動態插入展開箭頭，讓主連結可正常導覽 --- */
+  document.querySelectorAll('.mobile-nav-item').forEach(function (item) {
+    var dropdown = item.querySelector('.mobile-dropdown');
+    if (!dropdown) return;
+
+    var link = item.querySelector('a');
+    var toggle = document.createElement('span');
+    toggle.className = 'mobile-dropdown-toggle';
+    toggle.setAttribute('aria-label', '展開子選單');
+    link.insertAdjacentElement('afterend', toggle);
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      item.classList.toggle('open');
     });
   });
 
