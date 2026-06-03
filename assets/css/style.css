@@ -631,6 +631,13 @@ p {
   h1, .h1 { font-size: 32px; }
   h2, .h2 { font-size: 24px; }
   h3, .h3 { font-size: 18px; }
+
+  .page-hero h1,
+  .section-title,
+  .section-heading,
+  h1, h2, h3 {
+    font-family: 'Noto Serif TC', 'Playfair Display', serif !important;
+  }
   body { font-size: 15px; }
   .text-small { font-size: 12px; }
 
