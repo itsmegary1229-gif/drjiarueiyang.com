@@ -498,3 +498,13 @@
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
+
+/* 演講經歷強制置中 */
+.section-lectures,
+.lectures-wrapper,
+.lectures-container,
+[class*="lecture"] {
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
