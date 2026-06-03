@@ -497,14 +497,19 @@
   .cert-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+
+  .section-title h2,
+  .section-lectures h2,
+  .intro-text h2 {
+    font-family: 'Noto Serif TC', 'Playfair Display', serif !important;
+  }
 }
 
-/* 演講經歷強制置中 */
-.section-lectures,
-.lectures-wrapper,
-.lectures-container,
-[class*="lecture"] {
-  max-width: 900px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+/* 演講經歷置中 */
+.lectures-wrapper {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-right: 40px;
 }
