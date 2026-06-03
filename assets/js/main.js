@@ -104,4 +104,22 @@ document.addEventListener('DOMContentLoaded', function () {
     fadeEls.forEach(function (el) { observer.observe(el); });
   }
 
+  /* --- 演講 Accordion --- */
+  document.querySelectorAll('.accordion-header').forEach(function (header) {
+    header.addEventListener('click', function () {
+      var item = this.closest('.accordion-item');
+      var isOpen = item.classList.contains('open');
+      // 關閉所有
+      document.querySelectorAll('.accordion-item').forEach(function (i) {
+        i.classList.remove('open');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+      });
+      // 若原本是關閉的，則打開
+      if (!isOpen) {
+        item.classList.add('open');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
 });
