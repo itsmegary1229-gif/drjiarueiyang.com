@@ -349,7 +349,7 @@
 
 @media (max-width: 640px) {
   .detail-container {
-    padding: 0 20px;
+    padding: 0 24px;
   }
   .highlight-section {
     padding: 24px 20px;
@@ -361,6 +361,6 @@
     grid-template-columns: 1fr;
   }
   .treatments-container {
-    padding: 0 20px 60px;
+    padding: 0 24px 60px;
   }
 }
