@@ -87,7 +87,10 @@ async function loadArticles() {
     allDocs = snapshot.docs.filter(doc => doc.data().type === pageType);
 
     if (allDocs.length === 0) {
-      grid.innerHTML = '<p style="text-align:center; color:#999; padding: 40px 0; grid-column:1/-1;">目前尚無文章。</p>';
+      const emptyMsg = pageType === 'case'
+        ? '案例陸續更新中，歡迎直接與我聯繫諮詢。'
+        : '目前尚無文章。';
+      grid.innerHTML = `<p style="text-align:center; color:#999; padding: 40px 0; grid-column:1/-1;">${emptyMsg}</p>`;
       return;
     }
 
