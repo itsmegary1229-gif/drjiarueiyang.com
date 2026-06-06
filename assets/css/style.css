@@ -676,3 +676,59 @@ p {
     margin-bottom: 32px;
   }
 }
+
+/* ===== 頁尾迷你聯絡表單 ===== */
+.footer-contact-form h4 {
+  color: #c9a84c;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.footer-form-group {
+  margin-bottom: 10px;
+}
+.footer-form-group input,
+.footer-form-group textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: #e8e4dc;
+  font-size: 13px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.footer-form-group input::placeholder,
+.footer-form-group textarea::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+.footer-form-submit {
+  background: transparent;
+  border: 1px solid #c9a84c;
+  color: #c9a84c;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.footer-form-submit:hover {
+  background: #c9a84c;
+  color: #1a1a2e;
+}
+.footer-form-success {
+  color: #c9a84c;
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 16px 0;
+}
+.contact-form-success {
+  color: var(--color-primary);
+  font-size: 16px;
+  line-height: 1.8;
+  padding: 24px 0;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 20px;
+}

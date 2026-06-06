@@ -122,4 +122,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* --- 聯絡表單非同步送出（頁尾迷你表單 + 門診掛號主表單） --- */
+  function handleAsyncForm(form, successClass) {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.innerHTML = '<p class="' + successClass + '">感謝您的訊息，我們將盡快與您聯繫。</p>';
+        } else {
+          alert('送出失敗，請稍後再試。');
+        }
+      } catch (err) {
+        alert('送出失敗，請確認網路連線後再試。');
+      }
+    });
+  }
+
+  document.querySelectorAll('.footer-inquiry-form').forEach(function (form) {
+    handleAsyncForm(form, 'footer-form-success');
+  });
+  document.querySelectorAll('.contact-inquiry-form').forEach(function (form) {
+    handleAsyncForm(form, 'contact-form-success');
+  });
+
 });
