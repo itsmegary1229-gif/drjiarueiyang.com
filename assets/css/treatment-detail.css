@@ -314,6 +314,16 @@
   border-radius: 0 6px 6px 0;
 }
 
+/* highlight-section 框內的延伸閱讀（純文字一行，避免框中框） */
+.highlight-related {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(45, 42, 94, 0.12);
+}
+
 .inline-related-label {
   font-family: 'Inter', 'Noto Sans TC', sans-serif;
   font-size: 11px;
