@@ -21,6 +21,47 @@
 
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/index.css">
+
+  <!-- 結構化資料：醫師（Physician）Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    "name": "楊佳叡醫師",
+    "alternateName": "Jia-Ruei Yang, MD",
+    "url": "https://drjiarueiyang.com",
+    "image": "https://drjiarueiyang.com/assets/images/og-image.jpg",
+    "medicalSpecialty": "PlasticSurgery",
+    "knowsAbout": ["顱顏外傷重建", "正顎手術", "慢性傷口重建", "顏面輪廓雕塑", "臉部年輕化手術", "眼袋手術", "提眉手術"],
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0000-0002-8584-870X"
+    },
+    "sameAs": ["https://orcid.org/0000-0002-8584-870X"],
+    "worksFor": [
+      {
+        "@type": "Hospital",
+        "name": "仁愛長庚合作聯盟醫院（大里仁愛醫院）",
+        "url": "https://www.jah.org.tw/",
+        "telephone": "+886-4-2481-9900",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "東榮路483號",
+          "addressLocality": "大里區",
+          "addressRegion": "台中市",
+          "postalCode": "412",
+          "addressCountry": "TW"
+        }
+      },
+      {
+        "@type": "Hospital",
+        "name": "桃園長庚紀念醫院",
+        "url": "https://www.cgmh.org.tw/"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
