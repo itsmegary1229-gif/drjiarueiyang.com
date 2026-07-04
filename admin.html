@@ -474,8 +474,9 @@
   <div class="login-box">
     <h1>楊佳叡醫師</h1>
     <p>文章後台管理系統</p>
-    <input type="password" id="password-input" placeholder="請輸入密碼" maxlength="20">
-    <div class="login-error" id="login-error">密碼錯誤，請再試一次</div>
+    <input type="email" id="email-input" placeholder="請輸入 Email" autocomplete="username">
+    <input type="password" id="password-input" placeholder="請輸入密碼" autocomplete="current-password">
+    <div class="login-error" id="login-error">登入失敗，請確認 Email 與密碼</div>
     <button class="btn-save" style="width:100%" onclick="login()">登入</button>
   </div>
 </div>
@@ -665,9 +666,11 @@
     collection, getDocs, addDoc, updateDoc, deleteDoc,
     doc, orderBy, query
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import {
+    getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-  /* ===== 密碼 ===== */
-  const PASSWORD = '1202';  // ★ 您可以修改這個密碼
+  const auth = getAuth();
 
   /* ===== Quill 富文本編輯器 ===== */
   const quill = new Quill('#quill-editor', {
@@ -1034,26 +1037,38 @@
     }
   }
 
-  window.login = function() {
-    const val = document.getElementById('password-input').value;
-    if (val === PASSWORD) {
+  window.login = async function() {
+    const email = document.getElementById('email-input').value.trim();
+    const pw = document.getElementById('password-input').value;
+    try {
+      await signInWithEmailAndPassword(auth, email, pw);
+      // 登入成功後由 onAuthStateChanged 統一切換畫面
+    } catch (err) {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  };
+
+  // 統一由登入狀態決定顯示哪個畫面（重新整理後不用重登）
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('admin-screen').style.display = 'block';
       loadArticles();
     } else {
-      document.getElementById('login-error').style.display = 'block';
+      document.getElementById('admin-screen').style.display = 'none';
+      document.getElementById('login-screen').style.display = 'flex';
     }
-  };
+  });
 
   // 按 Enter 也能登入
   document.getElementById('password-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') window.login();
   });
 
-  window.logout = function() {
-    document.getElementById('admin-screen').style.display = 'none';
-    document.getElementById('login-screen').style.display = 'flex';
+  window.logout = async function() {
+    await signOut(auth);
     document.getElementById('password-input').value = '';
+    document.getElementById('email-input').value = '';
   };
 
   /* ===== Google Drive 圖片選取器 ===== */
