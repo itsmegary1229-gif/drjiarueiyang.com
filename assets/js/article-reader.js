@@ -121,12 +121,12 @@ async function loadArticle() {
     }
 
     // 設定分享按鈕
-    const pageUrl = encodeURIComponent(window.location.href);
+    const shareUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent(data.title || '楊佳叡醫師');
     document.getElementById('share-facebook').href =
-      `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+      `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
     document.getElementById('share-line').href =
-      `https://social-plugins.line.me/lineit/share?url=${pageUrl}&text=${pageTitle}`;
+      `https://social-plugins.line.me/lineit/share?url=${shareUrl}&text=${pageTitle}`;
 
     // 隱藏載入中，顯示內容
     loading.style.display = 'none';
