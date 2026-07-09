@@ -37,6 +37,55 @@ async function loadArticle() {
     document.getElementById('article-title').textContent = data.title || '';
     document.title = (data.title || '文章') + ' | 楊佳叡醫師';
 
+    // === 動態 SEO meta（Googlebot 會渲染 JS；FB/LINE 走 head 靜態 fallback）===
+    const setMeta = (attr, key, value) => {
+      if (!value) return;
+      let el = document.querySelector(`meta[${attr}="${key}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', value);
+    };
+
+    const pageUrl = `https://drjiarueiyang.com/blog/article.html?id=${id}`;
+
+    setMeta('name', 'description', data.excerpt || '');
+    setMeta('property', 'og:title', (data.title || '文章') + ' | 楊佳叡醫師');
+    setMeta('property', 'og:description', data.excerpt || '');
+    setMeta('property', 'og:url', pageUrl);
+    if (data.coverUrl) setMeta('property', 'og:image', data.coverUrl);
+
+    // canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', pageUrl);
+
+    // Article 結構化資料
+    const ldJson = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": data.title || '',
+      "description": data.excerpt || '',
+      "datePublished": data.date || '',
+      "author": {
+        "@type": "Person",
+        "name": "楊佳叡醫師",
+        "url": "https://drjiarueiyang.com/about.html"
+      }
+    };
+    if (data.coverUrl) ldJson.image = data.coverUrl;
+    const ldScript = document.createElement('script');
+    ldScript.type = 'application/ld+json';
+    ldScript.textContent = JSON.stringify(ldJson);
+    document.head.appendChild(ldScript);
+    // === 動態 SEO meta 結束 ===
+
     // 填入日期
     document.getElementById('article-date').textContent = data.date || '';
 
