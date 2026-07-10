@@ -1,0 +1,254 @@
+/* ============================================
+   狐臭手術內容頁專屬樣式
+   檔案位置：assets/css/bromhidrosis.css
+   全部 scope 在 .brom-page 之下，避免與全域樣式衝突。
+   顏色一律使用 style.css 的全域 CSS 變數，不硬編品牌色。
+   （比較表的 good/mid/low pill 為傳達資料的語意色，保留原色。）
+   ============================================ */
+
+.brom-page {
+  color: var(--color-text-secondary);
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+}
+
+.brom-page h1,
+.brom-page h2,
+.brom-page h3,
+.brom-page h4 {
+  font-family: var(--font-serif-zh);
+  color: var(--color-primary);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.brom-page a { color: var(--color-accent); text-decoration: none; }
+.brom-page a:hover { text-decoration: underline; }
+
+.brom-page .wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- breadcrumb + hero ---------- */
+.brom-page .crumb {
+  font-size: 0.86rem;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.05em;
+  padding-top: 40px;
+}
+.brom-page .crumb a { color: var(--color-text-tertiary); }
+
+.brom-page .eyebrow {
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.brom-page .hero { padding: 14px 0 8px; }
+.brom-page .hero h1 { font-size: 2.5rem; letter-spacing: 0.02em; margin: 14px 0 6px; }
+.brom-page .hero .sub {
+  font-size: 1.08rem;
+  color: var(--color-primary-light);
+  font-family: var(--font-serif-zh);
+  letter-spacing: 0.04em;
+}
+.brom-page .hero .lede {
+  margin-top: 22px;
+  font-size: 1.06rem;
+  color: var(--color-text-secondary);
+  max-width: 44em;
+}
+@media (max-width: 640px) { .brom-page .hero h1 { font-size: 1.9rem; } }
+
+/* ---------- section scaffolding ---------- */
+.brom-page section { padding: 40px 0; }
+.brom-page .sec-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.24em;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.brom-page section h2 { font-size: 1.6rem; letter-spacing: 0.03em; margin-bottom: 8px; }
+.brom-page section h2 + p { margin-top: 14px; }
+.brom-page section p { margin: 0 0 16px; }
+.brom-page .rule { height: 1px; background: var(--color-border); border: 0; margin: 0 auto; max-width: 920px; }
+.brom-page .band { background: #fff; }
+.brom-page .lead-hl { color: var(--color-primary); font-weight: 500; }
+
+/* ---------- fact cards ---------- */
+.brom-page .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+.brom-page .fact {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 22px 20px;
+}
+.brom-page .fact .n {
+  font-family: var(--font-serif-zh);
+  color: var(--color-accent);
+  font-size: 1.7rem;
+  font-weight: 500;
+  line-height: 1;
+}
+.brom-page .fact .k { margin-top: 8px; font-size: 0.92rem; color: var(--color-text-tertiary); }
+@media (max-width: 720px) { .brom-page .facts { grid-template-columns: 1fr; } }
+
+/* ---------- step list ---------- */
+.brom-page .steps { counter-reset: step; margin: 26px 0 0; padding: 0; list-style: none; }
+.brom-page .step {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-border);
+}
+.brom-page .step:last-child { border-bottom: 1px solid var(--color-border); }
+.brom-page .step .idx {
+  counter-increment: step;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-accent);
+  font-family: var(--font-serif-zh);
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+}
+.brom-page .step .idx::before { content: counter(step, decimal-leading-zero); }
+.brom-page .step h4 { font-size: 1.08rem; margin-bottom: 4px; }
+.brom-page .step p { margin: 0; font-size: 0.98rem; }
+.brom-page .imgslot {
+  margin-top: 14px;
+  border: 1px dashed var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg);
+  color: var(--color-text-tertiary);
+  font-size: 0.82rem;
+  padding: 14px 16px;
+}
+
+/* ---------- comparison table (signature) ---------- */
+.brom-page .compare-intro { margin-top: 6px; }
+.brom-page .tablewrap {
+  margin-top: 26px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.brom-page .tscroll { overflow-x: auto; }
+.brom-page table.cmp { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 0.95rem; }
+.brom-page table.cmp th,
+.brom-page table.cmp td {
+  padding: 15px 18px; text-align: left; vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+.brom-page table.cmp thead th {
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-serif-zh);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  font-size: 1rem;
+  border-bottom: 0;
+}
+.brom-page table.cmp thead th.feature { background: var(--color-primary-light); }
+.brom-page table.cmp thead th.pick { background: var(--color-accent); color: #fff; position: relative; }
+.brom-page table.cmp thead th .tag {
+  display: block; font-size: 0.72rem; font-weight: 400;
+  letter-spacing: 0.14em; opacity: 0.9; margin-top: 2px;
+}
+.brom-page table.cmp tbody th {
+  background: var(--color-bg);
+  color: var(--color-primary);
+  font-weight: 500;
+  white-space: nowrap;
+  font-family: var(--font-sans-zh);
+  width: 150px;
+}
+.brom-page table.cmp td.pick { background: rgba(184, 160, 80, 0.08); }
+.brom-page table.cmp tbody tr:last-child th,
+.brom-page table.cmp tbody tr:last-child td { border-bottom: 0; }
+
+/* pill：語意色（good/mid/low），依業主確認保留原色 */
+.brom-page .pill { display: inline-block; font-size: 0.76rem; padding: 2px 9px; border-radius: 999px; line-height: 1.7; margin: 1px 0; }
+.brom-page .pill.good { background: #EAF3EC; color: #2f6b45; }
+.brom-page .pill.mid  { background: #FBF3E4; color: #8a6a26; }
+.brom-page .pill.low  { background: #F5ECEC; color: #8a4141; }
+.brom-page .cap { font-size: 0.82rem; color: var(--color-text-tertiary); margin-top: 12px; }
+
+/* ---------- two-column info ---------- */
+.brom-page .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+.brom-page .box {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 24px;
+}
+.brom-page .box h3 { font-size: 1.15rem; margin-bottom: 12px; }
+.brom-page .box.warn { background: rgba(184, 160, 80, 0.06); border-color: var(--color-border); }
+.brom-page .box ul { margin: 0; padding-left: 1.15em; }
+.brom-page .box li { margin: 6px 0; }
+@media (max-width: 720px) { .brom-page .cols { grid-template-columns: 1fr; } }
+
+/* ---------- timeline ---------- */
+.brom-page .tl { margin-top: 24px; border-left: 2px solid var(--color-border); padding-left: 0; }
+.brom-page .tl .node { position: relative; padding: 0 0 26px 30px; }
+.brom-page .tl .node::before {
+  content: ""; position: absolute; left: -7px; top: 5px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--color-accent); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+.brom-page .tl .when { font-family: var(--font-serif-zh); color: var(--color-primary); font-weight: 500; font-size: 1.02rem; }
+.brom-page .tl .node p { margin: 6px 0 0; font-size: 0.97rem; }
+
+/* ---------- faq ---------- */
+.brom-page .faq { margin-top: 20px; border-top: 1px solid var(--color-border); }
+.brom-page details { border-bottom: 1px solid var(--color-border); padding: 6px 0; }
+.brom-page summary {
+  cursor: pointer; list-style: none;
+  padding: 16px 40px 16px 4px; position: relative;
+  color: var(--color-primary);
+  font-family: var(--font-serif-zh);
+  font-weight: 500; font-size: 1.05rem;
+}
+.brom-page summary::-webkit-details-marker { display: none; }
+.brom-page summary::after {
+  content: "+"; position: absolute; right: 8px; top: 14px;
+  font-size: 1.4rem; color: var(--color-accent); transition: transform 0.2s;
+}
+.brom-page details[open] summary::after { transform: rotate(45deg); }
+.brom-page details p { padding: 0 4px 16px; margin: 0; }
+
+/* ---------- disclaimer / refs ---------- */
+.brom-page .note {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: 30px;
+}
+.brom-page .refs { font-size: 0.84rem; color: var(--color-text-tertiary); margin-top: 18px; }
+.brom-page .refs ol { padding-left: 1.3em; margin: 8px 0 0; }
+.brom-page .refs li { margin: 6px 0; line-height: 1.7; }
+
+/* ---------- CTA buttons ---------- */
+.brom-page .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.brom-page .btn { display: inline-block; padding: 13px 26px; border-radius: 999px; font-weight: 500; letter-spacing: 0.04em; }
+.brom-page .btn.primary { background: var(--color-primary); color: #fff; }
+.brom-page .btn.primary:hover { background: var(--color-primary-light); text-decoration: none; }
+.brom-page .btn.ghost { border: 1.5px solid var(--color-accent); color: var(--color-accent); }
+.brom-page .btn.ghost:hover { background: rgba(184, 160, 80, 0.08); text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .brom-page * { transition: none !important; }
+}
