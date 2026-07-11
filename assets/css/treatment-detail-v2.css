@@ -1,0 +1,279 @@
+/* ============================================
+   專長項目內容頁 v2 共用樣式
+   檔案位置：assets/css/treatment-detail-v2.css
+   來源：由 bromhidrosis.css 抽取通用元件而成，
+   供四個主要專長頁（craniofacial / wound / contouring / rejuvenation）
+   逐頁改版時共用。
+   全部 scope 在 .treatment-page 之下，避免與全域樣式衝突。
+   顏色一律使用 style.css 的全域 CSS 變數，不硬編品牌色。
+   ============================================ */
+
+.treatment-page {
+  color: var(--color-text-secondary);
+  line-height: 2;
+  letter-spacing: 0.01em;
+}
+
+.treatment-page h1,
+.treatment-page h2,
+.treatment-page h3,
+.treatment-page h4 {
+  font-family: var(--font-serif-zh);
+  color: var(--color-primary);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.treatment-page a { color: var(--color-accent); text-decoration: none; }
+.treatment-page a:hover { text-decoration: underline; }
+
+.treatment-page .wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- breadcrumb + hero ---------- */
+.treatment-page .crumb {
+  font-size: 0.86rem;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.05em;
+  padding-top: 40px;
+}
+.treatment-page .crumb a { color: var(--color-text-tertiary); }
+
+.treatment-page .eyebrow {
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.treatment-page .hero { padding: 28px 0 80px; }
+.treatment-page .hero h1 { font-size: 2.5rem; letter-spacing: 0.02em; margin: 14px 0 6px; }
+.treatment-page .hero .sub {
+  font-size: 1.08rem;
+  color: var(--color-primary-light);
+  font-family: var(--font-serif-zh);
+  letter-spacing: 0.04em;
+}
+.treatment-page .hero .lede {
+  margin-top: 32px;
+  font-size: 1.06rem;
+  color: var(--color-text-secondary);
+  max-width: 44em;
+}
+@media (max-width: 640px) { .treatment-page .hero h1 { font-size: 1.9rem; } }
+
+/* ---------- section scaffolding ---------- */
+.treatment-page section { padding: 76px 0; }
+.treatment-page .sec-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.24em;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.treatment-page section h2 { font-size: 1.6rem; letter-spacing: 0.03em; margin-bottom: 10px; }
+.treatment-page section h2 + p { margin-top: 26px; }
+.treatment-page section p { margin: 0 0 22px; }
+.treatment-page .rule { height: 1px; background: var(--color-border); border: 0; margin: 76px auto; max-width: 920px; }
+.treatment-page .band { background: var(--color-bg); }
+.treatment-page .lead-hl { color: var(--color-primary); font-weight: 500; }
+
+/* ---------- 條列項目（病症類型等） ---------- */
+.treatment-page .item { margin-top: 40px; }
+.treatment-page .item:first-of-type { margin-top: 32px; }
+.treatment-page .item h3 { font-size: 1.18rem; margin-bottom: 10px; }
+.treatment-page .item p { margin-bottom: 14px; }
+
+/* ---------- 延伸閱讀（內文行內卡片，沿用金色左框慣例） ---------- */
+.treatment-page .inline-related {
+  border-left: 3px solid var(--color-accent);
+  background: rgba(184, 160, 80, 0.06);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 18px;
+  margin: 14px 0 6px;
+  font-size: 0.95rem;
+}
+.treatment-page .inline-related .label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--color-text-tertiary);
+  margin-bottom: 2px;
+}
+.treatment-page .inline-related a { color: var(--color-primary); }
+.treatment-page .inline-related a:hover { color: var(--color-accent); }
+.treatment-page .inline-related .coming-soon {
+  display: inline-block;
+  font-size: 0.74rem;
+  color: var(--color-text-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 1px 9px;
+  margin-left: 8px;
+  vertical-align: 1px;
+}
+
+/* ---------- fact cards（大數字事實卡） ---------- */
+.treatment-page .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+.treatment-page .fact {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 22px 20px;
+}
+.treatment-page .fact .n {
+  font-family: var(--font-serif-zh);
+  color: var(--color-accent);
+  font-size: 1.7rem;
+  font-weight: 500;
+  line-height: 1;
+}
+.treatment-page .fact .k { margin-top: 8px; font-size: 0.92rem; color: var(--color-text-tertiary); }
+@media (max-width: 720px) { .treatment-page .facts { grid-template-columns: 1fr; } }
+
+/* ---------- step list（編號步驟） ---------- */
+.treatment-page .steps { counter-reset: step; margin: 26px 0 0; padding: 0; list-style: none; }
+.treatment-page .step {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-border);
+}
+.treatment-page .step:last-child { border-bottom: 1px solid var(--color-border); }
+.treatment-page .step .idx {
+  counter-increment: step;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-accent);
+  font-family: var(--font-serif-zh);
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+}
+.treatment-page .step .idx::before { content: counter(step, decimal-leading-zero); }
+.treatment-page .step h4 { font-size: 1.08rem; margin-bottom: 4px; }
+.treatment-page .step p { margin: 0 0 10px; font-size: 0.98rem; }
+.treatment-page .step .inline-related { margin: 10px 0 0; }
+
+/* ---------- two-column info ---------- */
+.treatment-page .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+.treatment-page .box {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 24px;
+}
+.treatment-page .box h3 { font-size: 1.15rem; margin-bottom: 12px; }
+.treatment-page .box.warn { background: rgba(184, 160, 80, 0.06); }
+.treatment-page .box ul { margin: 0; padding-left: 1.15em; }
+.treatment-page .box li { margin: 6px 0; }
+@media (max-width: 720px) { .treatment-page .cols { grid-template-columns: 1fr; } }
+
+/* ---------- checklist（就診時機勾選清單） ---------- */
+.treatment-page .checklist { list-style: none; margin: 26px 0 0; padding: 0; }
+.treatment-page .checklist li {
+  position: relative;
+  padding: 12px 0 12px 36px;
+  border-bottom: 1px solid var(--color-border);
+}
+.treatment-page .checklist li:first-child { border-top: 1px solid var(--color-border); }
+.treatment-page .checklist li::before {
+  content: "✓";
+  position: absolute;
+  left: 6px;
+  top: 12px;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ---------- timeline ---------- */
+.treatment-page .tl { margin-top: 24px; border-left: 2px solid var(--color-border); padding-left: 0; }
+.treatment-page .tl .node { position: relative; padding: 0 0 26px 30px; }
+.treatment-page .tl .node::before {
+  content: ""; position: absolute; left: -7px; top: 5px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--color-accent); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+.treatment-page .tl .when { font-family: var(--font-serif-zh); color: var(--color-primary); font-weight: 500; font-size: 1.02rem; }
+.treatment-page .tl .node p { margin: 6px 0 0; font-size: 0.97rem; }
+
+/* ---------- faq ---------- */
+.treatment-page .faq { margin-top: 20px; border-top: 1px solid var(--color-border); }
+.treatment-page details { border-bottom: 1px solid var(--color-border); padding: 6px 0; }
+.treatment-page summary {
+  cursor: pointer; list-style: none;
+  padding: 16px 40px 16px 4px; position: relative;
+  color: var(--color-primary);
+  font-family: var(--font-serif-zh);
+  font-weight: 500; font-size: 1.05rem;
+}
+.treatment-page summary::-webkit-details-marker { display: none; }
+.treatment-page summary::after {
+  content: "+"; position: absolute; right: 8px; top: 14px;
+  font-size: 1.4rem; color: var(--color-accent); transition: transform 0.2s;
+}
+.treatment-page details[open] summary::after { transform: rotate(45deg); }
+.treatment-page details p { padding: 0 4px 16px; margin: 0; }
+
+/* ---------- 延伸閱讀總表（文末卡片格） ---------- */
+.treatment-page .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 26px; }
+.treatment-page .related-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: var(--color-primary);
+  transition: border-color 0.2s, background 0.2s;
+}
+.treatment-page .related-card:hover {
+  border-color: var(--color-accent);
+  background: rgba(184, 160, 80, 0.05);
+  text-decoration: none;
+}
+.treatment-page .related-card .arrow { color: var(--color-accent); flex: none; }
+@media (max-width: 720px) { .treatment-page .related-grid { grid-template-columns: 1fr; } }
+
+/* ---------- disclaimer / note ---------- */
+.treatment-page .note {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: 30px;
+}
+
+/* ---------- CTA buttons ---------- */
+.treatment-page .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.treatment-page .btn { display: inline-block; padding: 13px 26px; border-radius: 999px; font-weight: 500; letter-spacing: 0.04em; }
+.treatment-page .btn.primary { background: var(--color-primary); color: #fff; }
+.treatment-page .btn.primary:hover { background: var(--color-primary-light); text-decoration: none; }
+.treatment-page .btn.ghost { border: 1.5px solid var(--color-accent); color: var(--color-accent); }
+.treatment-page .btn.ghost:hover { background: rgba(184, 160, 80, 0.08); text-decoration: none; }
+
+/* 手機：留白略縮一級，避免雜誌感在小螢幕上過於鬆散 */
+@media (max-width: 767px) {
+  .treatment-page { line-height: 1.9; }
+  .treatment-page section { padding: 48px 0; }
+  .treatment-page .rule { margin: 32px auto; }
+  .treatment-page .hero { padding: 16px 0 48px; }
+  .treatment-page .hero .lede { margin-top: 24px; }
+  .treatment-page .sec-label { margin-bottom: 12px; }
+  .treatment-page section h2 + p { margin-top: 18px; }
+  .treatment-page section p { margin: 0 0 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .treatment-page * { transition: none !important; }
+}
