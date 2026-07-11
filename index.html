@@ -331,6 +331,13 @@
     import { collection, getDocs, orderBy, query }
       from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+    /* 首頁精選文章（固定三篇，依此順序顯示） */
+    const FEATURED_BLOG_IDS = [
+      'XRWjUMein41XxhxiTDwl',
+      'iKZGRaKijEIANcZZtf83',
+      'JYIz4KLCvuPfWoOVUFJU'
+    ];
+
     /* 共用：產生卡片 HTML */
     function createCardHTML(doc, type) {
       const data = doc.data();
@@ -361,12 +368,25 @@
     }
 
     /* 共用：載入指定類型的最新 3 筆到指定容器 */
-    async function loadHomeSection(snapshot, type, gridId, emptyMsg, errorMsg) {
+    async function loadHomeSection(snapshot, type, gridId, emptyMsg, errorMsg, featuredIds) {
       const grid = document.getElementById(gridId);
       if (!grid) return;
 
       try {
-        const docs = snapshot.docs.filter(d => d.data().type === type).slice(0, 3);
+        const typeDocs = snapshot.docs.filter(d => d.data().type === type);
+        let docs;
+        if (featuredIds && featuredIds.length) {
+          docs = featuredIds
+            .map(id => typeDocs.find(d => d.id === id))
+            .filter(Boolean);
+          // 保險機制：精選文章找不到或不足三篇時，以最新文章補滿
+          if (docs.length < 3) {
+            const rest = typeDocs.filter(d => !featuredIds.includes(d.id));
+            docs = docs.concat(rest.slice(0, 3 - docs.length));
+          }
+        } else {
+          docs = typeDocs.slice(0, 3);
+        }
 
         if (docs.length === 0) {
           grid.innerHTML = `<p style="text-align:center; color:#999; padding:40px 0; grid-column:1/-1;">${emptyMsg}</p>`;
@@ -386,7 +406,7 @@
         const q = query(collection(db, 'articles'), orderBy('date', 'desc'));
         const snapshot = await getDocs(q);
 
-        loadHomeSection(snapshot, 'blog', 'home-blog-grid', '目前尚無文章。', '文章載入失敗，請稍後再試。');
+        loadHomeSection(snapshot, 'blog', 'home-blog-grid', '目前尚無文章。', '文章載入失敗，請稍後再試。', FEATURED_BLOG_IDS);
         loadHomeSection(snapshot, 'case', 'home-case-grid', '案例陸續更新中，歡迎直接與我聯繫諮詢。', '案例載入失敗，請稍後再試。');
       } catch (error) {
         console.error('首頁資料載入失敗：', error);

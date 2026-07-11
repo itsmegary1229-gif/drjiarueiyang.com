@@ -52,12 +52,14 @@ function createCardHTML(doc) {
     ? `<img src="${coverUrl}" alt="${title}" class="card-image" loading="lazy" style="width:100%; height:200px; object-fit:cover;">`
     : `<div class="img-placeholder card-image"><span>文章封面圖</span></div>`;
   const dataTags = tags.join(',');
+  const isFeatured = data.type === 'blog' && FEATURED_IDS.includes(id);
+  const featuredHTML = isFeatured ? '<span class="featured-badge">精選</span>' : '';
 
   return `
     <a href="article.html?id=${id}" class="card" data-tags="${dataTags}" data-category="${category}">
       ${coverHTML}
       <div class="card-date">${date}</div>
-      <div class="card-tags">${tagsHTML}</div>
+      <div class="card-tags">${featuredHTML}${tagsHTML}</div>
       <h3 class="card-title">${title}</h3>
       <p class="card-excerpt">${excerpt}</p>
       <span class="card-link">閱讀更多 →</span>
@@ -68,6 +70,13 @@ function createCardHTML(doc) {
 /* ---------- 全域狀態 ---------- */
 let allDocs = [];         // 所有文章 doc
 let currentCategory = 'all';  // 目前選中的大分類
+
+/* 知識專欄精選文章（固定置頂，依此順序） */
+const FEATURED_IDS = [
+  'XRWjUMein41XxhxiTDwl',
+  'iKZGRaKijEIANcZZtf83',
+  'JYIz4KLCvuPfWoOVUFJU'
+];
 
 /* ---------- 主程式 ---------- */
 
@@ -85,6 +94,15 @@ async function loadArticles() {
     const q = query(collection(db, 'articles'), orderBy('date', 'desc'));
     const snapshot = await getDocs(q);
     allDocs = snapshot.docs.filter(doc => doc.data().type === pageType);
+
+    // 精選文章置頂（僅知識專欄），其餘依日期排序
+    if (pageType === 'blog') {
+      const featured = FEATURED_IDS
+        .map(id => allDocs.find(d => d.id === id))
+        .filter(Boolean);
+      const rest = allDocs.filter(d => !FEATURED_IDS.includes(d.id));
+      allDocs = featured.concat(rest);
+    }
 
     if (allDocs.length === 0) {
       const emptyMsg = pageType === 'case'
