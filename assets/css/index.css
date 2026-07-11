@@ -83,6 +83,15 @@
   margin-bottom: 28px;
 }
 
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-cta .btn-primary {
+  padding: 14px 40px;
+}
+
 .hero-face-line {
   position: absolute;
   right: -20px;
@@ -247,6 +256,16 @@
 
   .hero-divider {
     margin: 0 auto 28px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-cta .btn-primary {
+    width: min(260px, 100%);
+    text-align: center;
   }
 
   .hero-visual {
