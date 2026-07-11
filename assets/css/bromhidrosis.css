@@ -77,7 +77,7 @@
 .brom-page section h2 { font-size: 1.6rem; letter-spacing: 0.03em; margin-bottom: 10px; }
 .brom-page section h2 + p { margin-top: 26px; }
 .brom-page section p { margin: 0 0 22px; }
-.brom-page .rule { height: 1px; background: var(--color-border); border: 0; margin: 0 auto; max-width: 920px; }
+.brom-page .rule { height: 1px; background: var(--color-border); border: 0; margin: 76px auto; max-width: 920px; }
 .brom-page .band { background: var(--color-bg); }
 .brom-page .lead-hl { color: var(--color-primary); font-weight: 500; }
 
@@ -253,6 +253,7 @@
 @media (max-width: 767px) {
   .brom-page { line-height: 1.9; }
   .brom-page section { padding: 48px 0; }
+  .brom-page .rule { margin: 32px auto; }
   .brom-page .hero { padding: 16px 0 48px; }
   .brom-page .hero .lede { margin-top: 24px; }
   .brom-page .sec-label { margin-bottom: 12px; }
