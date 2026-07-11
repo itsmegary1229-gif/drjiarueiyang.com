@@ -1,0 +1,58 @@
+/* ============================================
+   全站 v2 視覺調和樣式
+   檔案位置：assets/css/v2-harmonize.css
+   用途：讓首頁、醫師介紹、知識專欄、門診掛號
+   與專長區（treatment-detail-v2）的視覺語言一致。
+   載入順序：置於各頁專屬 CSS「之後」。
+   原則：只調整細節（圓角、眉標、hover 語言），
+   不改版面結構、不動 JS 依賴的 DOM。
+   ============================================ */
+
+/* ---------- 1. 按鈕統一為膠囊圓角 ---------- */
+.btn-primary,
+.cta-button {
+  border-radius: 999px;
+}
+
+/* ---------- 2. 區塊英文小標 → 金色眉標 ----------
+   對象：首頁與各頁 .section-title 內的 .subtitle
+   （page-hero 的 serif 斜體副標保留原樣，是品牌簽名） */
+.section-title .subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  color: var(--color-accent);
+}
+
+/* ---------- 3. 知識專欄篩選 pill 的金色 hover ---------- */
+.category-btn:not(.active):hover,
+.filter-btn:not(.active):hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ---------- 4. 插入元件用的獨立樣式（不依賴 .treatment-page scope） ---------- */
+.v2-cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px 24px 90px;
+}
+.v2-lede {
+  max-width: 44em;
+  margin: 18px auto 0;
+  color: var(--color-text-secondary);
+  line-height: 2;
+  font-size: 1.02rem;
+}
+
+/* ---------- 5. 知識專欄文章卡片 hover ----------
+   卡片由 articles.js 渲染為 a.card（無邊框，style.css 已有
+   transform 過渡與陰影語言），故依規範採輕微上移回饋、
+   不新增邊框，並統一上移幅度為 -3px。 */
+.article-grid > .card:hover {
+  transform: translateY(-3px);
+}
