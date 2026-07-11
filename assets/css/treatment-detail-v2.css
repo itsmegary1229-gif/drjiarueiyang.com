@@ -277,3 +277,61 @@
 @media (prefers-reduced-motion: reduce) {
   .treatment-page * { transition: none !important; }
 }
+
+/* ============================================
+   v2.1 追加元件（2026-07-11）
+   1. 症狀對照卡（困擾 → 可能對應的手術方向）
+   2. 延伸閱讀佔位卡片（撰寫中）
+   純追加，不影響既有元件。
+   ============================================ */
+
+/* ---------- 症狀對照卡 ---------- */
+.treatment-page .symptoms { display: grid; gap: 14px; margin-top: 26px; }
+.treatment-page .symptom {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 18px 22px;
+}
+.treatment-page .symptom .q {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+.treatment-page .symptom .a {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  padding-left: 1.4em;
+  position: relative;
+}
+.treatment-page .symptom .a::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+.treatment-page .symptoms-note {
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+  margin-top: 14px;
+}
+
+/* ---------- 延伸閱讀佔位卡片（撰寫中） ---------- */
+.treatment-page .related-card.placeholder {
+  color: var(--color-text-tertiary);
+  background: transparent;
+  border-style: dashed;
+  cursor: default;
+}
+.treatment-page .related-card.placeholder:hover {
+  border-color: var(--color-border);
+  background: transparent;
+}
+.treatment-page .related-card .badge {
+  flex: none;
+  font-size: 0.74rem;
+  color: var(--color-text-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 1px 9px;
+}
