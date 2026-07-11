@@ -5,6 +5,7 @@
 /* --- Hero 區塊 --- */
 .hero {
   min-height: 100vh;
+  min-height: 100svh;
   position: relative;
   overflow: hidden;
 }
@@ -15,6 +16,7 @@
   margin: 0 auto;
   padding: 0 24px;
   min-height: calc(100vh - 88px);
+  min-height: calc(100svh - 88px);
 }
 
 .hero-text {
@@ -57,7 +59,16 @@
   font-size: 18px;
   line-height: 1.8;
   color: var(--color-text-primary);
-  margin-bottom: 32px;
+  margin-bottom: 14px;
+}
+
+.hero-affiliations {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.03em;
+  margin-bottom: 28px;
 }
 
 .hero-visual {
@@ -70,6 +81,7 @@
   width: auto;
   height: auto;
   max-height: calc((100vh - 88px) * 0.9);
+  max-height: calc((100svh - 88px) * 0.9);
   object-fit: contain;
   object-position: center bottom;
   border-radius: 0;
@@ -88,7 +100,8 @@
   gap: 12px;
   flex-wrap: wrap;
 }
-.hero-cta .btn-primary {
+.hero-cta .btn-primary,
+.hero-cta .btn-solid {
   padding: 14px 40px;
 }
 
@@ -238,6 +251,7 @@
 @media (max-width: 767px) {
   .hero-inner {
     min-height: 100vh;
+    min-height: 100svh;
   }
 
   .hero-text {
@@ -246,7 +260,7 @@
     top: auto;
     transform: none;
     width: 100%;
-    padding: 100px 16px 24px;
+    padding: 72px 16px 20px;
     text-align: center;
   }
 
@@ -255,17 +269,27 @@
   .hero-statement { font-size: 16px; }
 
   .hero-divider {
-    margin: 0 auto 28px;
+    margin: 0 auto 20px;
   }
 
   .hero-cta {
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
   }
-  .hero-cta .btn-primary {
-    width: min(260px, 100%);
+  .hero-cta .btn-primary,
+  .hero-cta .btn-solid {
+    flex: 1 1 0;
+    max-width: 180px;
+    padding: 13px 0;
     text-align: center;
+  }
+
+  .hero-statement { margin-bottom: 12px; }
+
+  .hero-affiliations {
+    font-size: 12.5px;
+    margin-bottom: 20px;
   }
 
   .hero-visual {
@@ -279,7 +303,7 @@
 
   .hero-photo {
     width: 260px;
-    max-height: 50vh;
+    max-height: 50svh;
   }
 
   .hero-face-line {
