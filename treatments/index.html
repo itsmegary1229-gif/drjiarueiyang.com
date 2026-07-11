@@ -19,7 +19,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/treatments.css">
+  <link rel="stylesheet" href="../assets/css/treatment-detail-v2.css">
 </head>
 <body>
 
@@ -47,6 +47,7 @@
             <a href="index.html#wound">慢性傷口重建</a>
             <a href="index.html#contouring">顏面輪廓雕塑</a>
             <a href="index.html#rejuvenation">臉部年輕化手術</a>
+            <a href="bromhidrosis.html">狐臭手術</a>
           </div>
         </div>
         <a href="../blog/index.html">知識專欄</a>
@@ -87,6 +88,7 @@
         <a href="index.html#wound">慢性傷口重建</a>
         <a href="index.html#contouring">顏面輪廓雕塑</a>
         <a href="index.html#rejuvenation">臉部年輕化手術</a>
+        <a href="bromhidrosis.html">狐臭手術</a>
       </div>
     </div>
     <a href="../blog/index.html">知識專欄</a>
@@ -102,111 +104,131 @@
     </div>
   </div>
 
-  <!-- ===== 頁首區 ===== -->
-  <section class="page-hero">
-    <div class="container">
-      <h1>專長項目</h1>
-      <p class="subtitle">Treatments</p>
-    </div>
-  </section>
-
-  <!-- ===== 四大專長項目 ===== -->
-  <section class="section-treatments">
-    <div class="treatments-container">
-
-      <!-- 分組一：整形重建 -->
-      <div class="treatment-group">
-        <div class="group-label">整形重建</div>
-        <div class="treatment-grid">
-
-          <div class="treatment-card" id="craniofacial">
-            <h3 class="treatment-card-title">顱顏外傷重建</h3>
-            <div class="treatment-tags">
-              <span class="treatment-tag">#顏面骨折</span>
-              <span class="treatment-tag">#眼眶重建</span>
-              <span class="treatment-tag">#顴骨骨折</span>
-              <span class="treatment-tag">#顏面外傷修復</span>
-            </div>
-            <p class="treatment-desc">顏面骨折的精確評估與重建，恢復骨骼輪廓與功能。</p>
-            <a href="craniofacial.html" class="treatment-link">深入了解 →</a>
-          </div>
-
-          <div class="treatment-card" id="wound">
-            <h3 class="treatment-card-title">慢性傷口重建</h3>
-            <div class="treatment-tags">
-              <span class="treatment-tag">#糖尿病足</span>
-              <span class="treatment-tag">#靜脈潰瘍</span>
-              <span class="treatment-tag">#皮瓣移植</span>
-              <span class="treatment-tag">#慢性傷口照護</span>
-            </div>
-            <p class="treatment-desc">找出阻礙癒合的根本原因，從清創換藥到皮瓣移植，協助傷口回到正常癒合軌道。</p>
-            <a href="wound.html" class="treatment-link">深入了解 →</a>
-          </div>
-
+  <main class="treatment-page">
+    <!-- ===== HERO ===== -->
+    <header class="wrap">
+      <div class="hero">
+        <div class="eyebrow">Areas of Expertise</div>
+        <h1>專長項目</h1>
+        <div class="sub">Treatments</div>
+        <p class="lede">整形重建與整形美容，是同一門專業的兩面。在醫院工作，讓我同時照顧<span class="lead-hl">外傷與慢性傷口的重建患者</span>，也持續投入<span class="lead-hl">以顏面為核心的美容手術</span>。以下是我的主要專長項目，點進各頁可以看到更完整的說明。</p>
+        <div class="cta-row">
+          <a class="btn primary" href="../appointment.html">預約評估門診 →</a>
+          <a class="btn ghost" href="../blog/index.html">逛逛知識專欄</a>
         </div>
       </div>
+    </header>
 
-      <!-- 分組二：整形美容 -->
-      <div class="treatment-group">
-        <div class="group-label">整形美容</div>
-        <div class="treatment-grid">
-
-          <div class="treatment-card" id="contouring">
-            <h3 class="treatment-card-title">顏面輪廓雕塑</h3>
-            <div class="treatment-tags">
-              <span class="treatment-tag">#正顎手術</span>
-              <span class="treatment-tag">#顴骨削骨</span>
-              <span class="treatment-tag">#下頷骨角削骨</span>
-              <span class="treatment-tag">#下巴截骨</span>
-            </div>
-            <p class="treatment-desc">正顎手術、顴骨與下頷骨削骨，從骨骼結構根本調整臉型比例與咬合功能。</p>
-            <a href="contouring.html" class="treatment-link">深入了解 →</a>
+    <!-- ===== 整形重建 ===== -->
+    <section class="wrap">
+      <div class="sec-label">Reconstructive</div>
+      <h2>整形重建</h2>
+      <p class="group-intro">外傷與慢性傷口的重建醫療，在醫院的跨科團隊中完成。</p>
+      <div class="tx-grid">
+        <a href="craniofacial.html" class="tx-card" id="craniofacial">
+          <h3>顱顏外傷重建</h3>
+          <div class="tx-tags">
+            <span class="tx-tag">#顏面骨折</span>
+            <span class="tx-tag">#眼眶重建</span>
+            <span class="tx-tag">#顴骨骨折</span>
+            <span class="tx-tag">#顏面外傷修復</span>
           </div>
-
-          <div class="treatment-card" id="rejuvenation">
-            <h3 class="treatment-card-title">臉部年輕化手術</h3>
-            <div class="treatment-tags">
-              <span class="treatment-tag">#眼袋手術</span>
-              <span class="treatment-tag">#提眉手術</span>
-              <span class="treatment-tag">#全臉拉皮</span>
-              <span class="treatment-tag">#雙眼皮</span>
-            </div>
-            <p class="treatment-desc">眼袋、提眉、拉皮等手術依個別老化型態量身規劃，目標是自然、不違和的改善。</p>
-            <a href="rejuvenation.html" class="treatment-link">深入了解 →</a>
+          <p class="desc">顏面骨折的精確評估與重建，恢復骨骼輪廓與功能。</p>
+          <span class="tx-go">深入了解 →</span>
+        </a>
+        <a href="wound.html" class="tx-card" id="wound">
+          <h3>慢性傷口重建</h3>
+          <div class="tx-tags">
+            <span class="tx-tag">#糖尿病足</span>
+            <span class="tx-tag">#靜脈潰瘍</span>
+            <span class="tx-tag">#皮瓣移植</span>
+            <span class="tx-tag">#慢性傷口照護</span>
           </div>
+          <p class="desc">找出阻礙癒合的根本原因，從清創換藥到皮瓣移植，協助傷口回到正常癒合軌道。</p>
+          <span class="tx-go">深入了解 →</span>
+        </a>
+      </div>
+    </section>
 
+    <hr class="rule">
+
+    <!-- ===== 整形美容 ===== -->
+    <section class="wrap">
+      <div class="sec-label">Aesthetic</div>
+      <h2>整形美容</h2>
+      <p class="group-intro">以顏面為核心的美容手術，從眼周年輕化到臉部輪廓調整。</p>
+      <div class="tx-grid">
+        <a href="contouring.html" class="tx-card" id="contouring">
+          <h3>顏面輪廓雕塑</h3>
+          <div class="tx-tags">
+            <span class="tx-tag">#正顎手術</span>
+            <span class="tx-tag">#顴骨削骨</span>
+            <span class="tx-tag">#下頷骨角削骨</span>
+            <span class="tx-tag">#下巴截骨</span>
+          </div>
+          <p class="desc">正顎手術、顴骨與下頷骨削骨，從骨骼結構根本調整臉型比例與咬合功能。</p>
+          <span class="tx-go">深入了解 →</span>
+        </a>
+        <a href="rejuvenation.html" class="tx-card" id="rejuvenation">
+          <h3>臉部年輕化手術</h3>
+          <div class="tx-tags">
+            <span class="tx-tag">#眼袋手術</span>
+            <span class="tx-tag">#提眉手術</span>
+            <span class="tx-tag">#全臉拉皮</span>
+            <span class="tx-tag">#雙眼皮</span>
+          </div>
+          <p class="desc">從眼周手術到中下臉拉皮，恢復自然的解剖位置，讓外表回到與自己狀態相符的樣子。</p>
+          <span class="tx-go">深入了解 →</span>
+        </a>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ===== 其他服務項目 ===== -->
+    <section class="wrap">
+      <div class="sec-label">Additional services</div>
+      <h2>其他服務項目</h2>
+      <p class="group-intro">顏面之外，這些手術也是我的服務範圍，介紹頁面陸續整理中。</p>
+      <div class="tx-grid">
+        <a href="bromhidrosis.html" class="tx-card">
+          <h3>狐臭手術</h3>
+          <div class="tx-tags">
+            <span class="tx-tag">#微創旋轉刀</span>
+            <span class="tx-tag">#頂漿腺刮除</span>
+            <span class="tx-tag">#整形膠</span>
+          </div>
+          <p class="desc">微創旋轉刀刮除頂漿腺，傷口小於 1 公分、恢復快，從根本改善狐臭困擾。</p>
+          <span class="tx-go">深入了解 →</span>
+        </a>
+        <div class="tx-card placeholder">
+          <h3>內視鏡隆乳</h3>
+          <p class="desc">內視鏡輔助精準剝離，出血少、恢復期短。</p>
+          <span class="badge">頁面籌備中</span>
+        </div>
+        <div class="tx-card placeholder">
+          <h3>平胸手術</h3>
+          <p class="desc">依個別條件規劃切口與位置，兼顧外觀與功能。</p>
+          <span class="badge">頁面籌備中</span>
+        </div>
+        <div class="tx-card placeholder">
+          <h3>腹部拉皮</h3>
+          <p class="desc">改善鬆弛與分離的腹壁，重塑腹部線條。</p>
+          <span class="badge">頁面籌備中</span>
         </div>
       </div>
+    </section>
 
-      <!-- 其他服務 -->
-      <div class="other-services">
-        <div class="other-services-label">其他服務項目</div>
-        <div class="minor-grid">
-          <a class="minor" href="bromhidrosis.html">
-            <span class="minor-title">狐臭手術</span>
-            <span class="minor-desc">微創旋轉刀刮除頂漿腺，傷口小於 1 公分、恢復快。</span>
-            <span class="minor-go">深入了解 <span class="minor-arw">→</span></span>
-          </a>
-          <a class="minor" href="#">
-            <span class="minor-title">內視鏡隆乳</span>
-            <span class="minor-desc">內視鏡輔助精準剝離，出血少、恢復期短。</span>
-            <span class="minor-go">深入了解 <span class="minor-arw">→</span></span>
-          </a>
-          <a class="minor" href="#">
-            <span class="minor-title">平胸手術</span>
-            <span class="minor-desc">依個別條件規劃切口與位置，兼顧外觀與功能。</span>
-            <span class="minor-go">深入了解 <span class="minor-arw">→</span></span>
-          </a>
-          <a class="minor" href="#">
-            <span class="minor-title">腹部拉皮</span>
-            <span class="minor-desc">改善鬆弛與分離的腹壁，重塑腹部線條。</span>
-            <span class="minor-go">深入了解 <span class="minor-arw">→</span></span>
-          </a>
-        </div>
+    <hr class="rule">
+
+    <!-- ===== 收尾 ===== -->
+    <section class="wrap">
+      <div class="cta-row" style="margin-top: 0;">
+        <a class="btn primary" href="../appointment.html">預約評估門診 →</a>
+        <a class="btn ghost" href="../about.html">認識楊醫師</a>
       </div>
-
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- ===== 頁尾 ===== -->
   <footer class="footer">
