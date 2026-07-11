@@ -111,6 +111,13 @@ async function loadArticles() {
     // 綁定 hashtag 篩選
     rebindFilter();
 
+    // 依網址參數自動套用大分類（供導覽列子選單連入）
+    const urlCategory = new URLSearchParams(window.location.search).get('category');
+    if (urlCategory) {
+      const target = document.querySelector(`.category-btn[data-category="${urlCategory}"]`);
+      if (target) target.click();
+    }
+
   } catch (error) {
     console.error('讀取文章失敗：', error);
     grid.innerHTML = '<p style="text-align:center; color:#999; padding: 40px 0; grid-column:1/-1;">讀取失敗，請稍後再試。</p>';
