@@ -8,7 +8,7 @@
 
 .brom-page {
   color: var(--color-text-secondary);
-  line-height: 1.85;
+  line-height: 2;
   letter-spacing: 0.01em;
 }
 
@@ -49,7 +49,7 @@
   font-weight: 500;
 }
 
-.brom-page .hero { padding: 14px 0 8px; }
+.brom-page .hero { padding: 28px 0 80px; }
 .brom-page .hero h1 { font-size: 2.5rem; letter-spacing: 0.02em; margin: 14px 0 6px; }
 .brom-page .hero .sub {
   font-size: 1.08rem;
@@ -58,7 +58,7 @@
   letter-spacing: 0.04em;
 }
 .brom-page .hero .lede {
-  margin-top: 22px;
+  margin-top: 32px;
   font-size: 1.06rem;
   color: var(--color-text-secondary);
   max-width: 44em;
@@ -66,19 +66,19 @@
 @media (max-width: 640px) { .brom-page .hero h1 { font-size: 1.9rem; } }
 
 /* ---------- section scaffolding ---------- */
-.brom-page section { padding: 40px 0; }
+.brom-page section { padding: 76px 0; }
 .brom-page .sec-label {
   font-size: 0.8rem;
   letter-spacing: 0.24em;
   color: var(--color-text-tertiary);
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
-.brom-page section h2 { font-size: 1.6rem; letter-spacing: 0.03em; margin-bottom: 8px; }
-.brom-page section h2 + p { margin-top: 14px; }
-.brom-page section p { margin: 0 0 16px; }
+.brom-page section h2 { font-size: 1.6rem; letter-spacing: 0.03em; margin-bottom: 10px; }
+.brom-page section h2 + p { margin-top: 26px; }
+.brom-page section p { margin: 0 0 22px; }
 .brom-page .rule { height: 1px; background: var(--color-border); border: 0; margin: 0 auto; max-width: 920px; }
-.brom-page .band { background: #fff; }
+.brom-page .band { background: var(--color-bg); }
 .brom-page .lead-hl { color: var(--color-primary); font-weight: 500; }
 
 /* ---------- fact cards ---------- */
@@ -248,6 +248,17 @@
 .brom-page .btn.primary:hover { background: var(--color-primary-light); text-decoration: none; }
 .brom-page .btn.ghost { border: 1.5px solid var(--color-accent); color: var(--color-accent); }
 .brom-page .btn.ghost:hover { background: rgba(184, 160, 80, 0.08); text-decoration: none; }
+
+/* 手機：留白略縮一級，避免雜誌感在小螢幕上過於鬆散 */
+@media (max-width: 767px) {
+  .brom-page { line-height: 1.9; }
+  .brom-page section { padding: 48px 0; }
+  .brom-page .hero { padding: 16px 0 48px; }
+  .brom-page .hero .lede { margin-top: 24px; }
+  .brom-page .sec-label { margin-bottom: 12px; }
+  .brom-page section h2 + p { margin-top: 18px; }
+  .brom-page section p { margin: 0 0 18px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .brom-page * { transition: none !important; }
