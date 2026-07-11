@@ -79,3 +79,63 @@
   background: var(--color-primary-light);
   border-color: var(--color-primary-light);
 }
+
+/* ---------- 7. 首頁專長四卡（靜態插入元件，視覺沿用 tx-card 語言） ---------- */
+.v2-tx-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.v2-tx-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 26px 24px;
+  color: var(--color-text-secondary);
+  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+a.v2-tx-card:hover {
+  border-color: var(--color-accent);
+  background: rgba(184, 160, 80, 0.05);
+  text-decoration: none;
+}
+
+.v2-tx-card h3 {
+  font-size: 1.12rem;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.v2-tx-card .desc {
+  font-size: 0.92rem;
+  line-height: 1.9;
+  margin: 0 0 16px;
+}
+
+.v2-tx-card .go {
+  margin-top: auto;
+  color: var(--color-accent);
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+a.v2-tx-card:hover .go { text-decoration: underline; }
+
+/* 平板：2×2 */
+@media (max-width: 1023px) {
+  .v2-tx-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* 手機：維持 2×2 緊湊格（四大專長須一屏全數可見，不做橫滑） */
+@media (max-width: 767px) {
+  .v2-tx-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .v2-tx-card { padding: 18px 16px; border-radius: 12px; }
+  .v2-tx-card h3 { font-size: 1.02rem; margin-bottom: 8px; }
+  .v2-tx-card .desc { font-size: 0.85rem; line-height: 1.8; margin-bottom: 12px; }
+  .v2-tx-card .go { font-size: 0.85rem; }
+}

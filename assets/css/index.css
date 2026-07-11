@@ -146,6 +146,12 @@
   flex: 0 0 340px;
 }
 
+/* --- 專長項目（靜態四卡） --- */
+.section-specialties {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--color-border);
+}
+
 /* --- 最新知識專欄 --- */
 .section-articles {
   padding: var(--section-gap) 0;
@@ -327,5 +333,38 @@
 
   .clinic-card {
     padding: 24px 16px;
+  }
+}
+
+/* ============================================
+   首頁知識專欄 — 手機版橫向滑動卡片列
+   （只作用於 #home-blog-grid，blog 列表頁不受影響；
+   卡片由 Firebase JS 渲染，DOM 不可動，僅以 CSS 改排版）
+   ============================================ */
+@media (max-width: 767px) {
+  #home-blog-grid {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -24px;
+    padding: 4px 24px 16px;
+  }
+
+  #home-blog-grid::-webkit-scrollbar { display: none; }
+
+  #home-blog-grid > .card {
+    flex: 0 0 auto;
+    width: min(76vw, 320px);
+    scroll-snap-align: start;
+  }
+
+  /* Firebase 載入失敗或無文章時的訊息，佔滿整列不參與橫滑 */
+  #home-blog-grid > p {
+    flex: 0 0 100%;
+    width: auto;
   }
 }
