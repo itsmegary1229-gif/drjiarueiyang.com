@@ -732,3 +732,36 @@ p {
   border-left: 2px solid var(--color-accent);
   padding-left: 20px;
 }
+
+/* ===== LINE QR code（2026-07-11 新增）===== */
+.contact-qr {
+  margin-top: 20px;
+}
+.contact-qr img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+.contact-qr .qr-caption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #999;
+  letter-spacing: 0.05em;
+}
+.footer-qr {
+  margin-top: 14px;
+}
+.footer-qr img {
+  display: block;
+  width: 112px;
+  height: 112px;
+  border-radius: 8px;
+}
+.footer-qr .qr-caption {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.05em;
+}
