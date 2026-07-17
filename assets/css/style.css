@@ -817,6 +817,7 @@ p {
 
 /* 手機：第二層手風琴的字級與箭頭尺寸校正（巢狀項不繼承第一層的 20px 大字） */
 .mobile-dropdown .mobile-nav-item > a {
+  display: inline-block;
   font-size: 15px;
 }
 .mobile-dropdown .mobile-dropdown-toggle {
@@ -824,4 +825,5 @@ p {
   height: 24px;
   line-height: 24px;
   font-size: 12px;
+  vertical-align: middle;
 }
