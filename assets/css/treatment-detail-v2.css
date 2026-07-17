@@ -397,3 +397,35 @@
 
 /* 分類引言（h2 下方一行） */
 .treatment-page .group-intro { font-size: 0.98rem; color: var(--color-text-tertiary); margin-top: 8px !important; }
+
+/* ---------- v2.3 追加：內文插圖（orthognathic 起用） ---------- */
+.treatment-page .fig { margin: 26px 0 6px; }
+.treatment-page .fig img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #fff;
+}
+.treatment-page .fig figcaption { margin-top: 8px; font-size: 0.85rem; color: #999; }
+
+/* ---------- v2.3 追加：facts 2×2 變體（4 張事實卡時使用） ---------- */
+.treatment-page .facts.cols-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 720px) { .treatment-page .facts.cols-2 { grid-template-columns: 1fr; } }
+
+/* ---------- v2.3 追加：總覽頁子專頁卡（母卡跨列＋金框子卡） ---------- */
+.treatment-page .tx-card.has-subs { grid-row: span 3; justify-content: center; }
+.treatment-page .tx-card.subcard {
+  border-left: 3px solid var(--color-accent);
+  background: rgba(184, 160, 80, 0.05);
+  padding: 20px 22px;
+}
+.treatment-page .tx-card.subcard .sub-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.treatment-page .tx-card.subcard h3 { font-size: 1.08rem; margin-bottom: 8px; }
+.treatment-page .tx-card.subcard .desc { font-size: 0.88rem; margin: 0 0 12px; }
+@media (max-width: 720px) { .treatment-page .tx-card.has-subs { grid-row: auto; } }

@@ -765,3 +765,34 @@ p {
   color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.05em;
 }
+
+/* ---------- 專長項目下拉：子專頁縮排項（2026-07 三子頁架構） ---------- */
+.dropdown a.sub {
+  padding-left: 40px;
+  font-size: 12.5px;
+  background: rgba(184, 160, 80, 0.05);
+  position: relative;
+}
+.dropdown a.sub::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: #B8A050;
+}
+.mobile-dropdown a.sub {
+  padding-left: 16px;
+  background: rgba(184, 160, 80, 0.05);
+  position: relative;
+}
+.mobile-dropdown a.sub::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: #B8A050;
+}
