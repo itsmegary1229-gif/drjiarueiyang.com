@@ -429,3 +429,6 @@
 .treatment-page .tx-card.subcard h3 { font-size: 1.08rem; margin-bottom: 8px; }
 .treatment-page .tx-card.subcard .desc { font-size: 0.88rem; margin: 0 0 12px; }
 @media (max-width: 720px) { .treatment-page .tx-card.has-subs { grid-row: auto; } }
+
+/* v2.3 追加：整行寬卡片（總覽頁分組首卡用） */
+.treatment-page .tx-card.wide { grid-column: 1 / -1; }
