@@ -349,7 +349,7 @@ p {
 }
 
 .mobile-nav-item.open > .mobile-dropdown {
-  max-height: 560px;
+  max-height: 400px;
 }
 
 .mobile-dropdown a {
@@ -764,66 +764,4 @@ p {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.05em;
-}
-
-/* ---------- 專長項目下拉：子專頁縮排項（2026-07 三子頁架構） ---------- */
-.dropdown a.sub {
-  padding-left: 40px;
-  font-size: 12.5px;
-  background: rgba(184, 160, 80, 0.05);
-  position: relative;
-}
-.dropdown a.sub::before {
-  content: "";
-  position: absolute;
-  left: 24px;
-  top: 50%;
-  width: 8px;
-  height: 1px;
-  background: #B8A050;
-}
-.mobile-dropdown a.sub {
-  padding-left: 16px;
-  background: rgba(184, 160, 80, 0.05);
-  position: relative;
-}
-.mobile-dropdown a.sub::before {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 50%;
-  width: 8px;
-  height: 1px;
-  background: #B8A050;
-}
-
-/* ---------- 專長下拉二階展開（2026-07-18） ---------- */
-/* 桌面：hover 顏面輪廓雕塑才展開三子項 */
-.dd-group > a::after {
-  content: "▾";
-  font-size: 10px;
-  margin-left: 6px;
-  color: #B8A050;
-}
-.dd-sub {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.28s ease;
-}
-.dd-group:hover .dd-sub,
-.dd-group:focus-within .dd-sub {
-  max-height: 160px;
-}
-
-/* 手機：第二層手風琴的字級與箭頭尺寸校正（巢狀項不繼承第一層的 20px 大字） */
-.mobile-dropdown .mobile-nav-item > a {
-  display: inline-block;
-  font-size: 15px;
-}
-.mobile-dropdown .mobile-dropdown-toggle {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  font-size: 12px;
-  vertical-align: middle;
 }
